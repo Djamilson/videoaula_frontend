@@ -1,123 +1,200 @@
-import React, { useCallback, useRef, ChangeEvent } from 'react';
-import { FiLock, FiMail, FiUser } from 'react-icons/fi';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { FaAngleDown, FaAngleUp, FaHandshake } from 'react-icons/fa';
 import { FiCheck } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 
-import { FormHandles } from '@unform/core';
-import * as Yup from 'yup';
-
 import Layout from '../_layout';
-import { Form, Header } from '../_layout/styles';
-import { ScheduleItem } from '../../_layouts/auth/styles';
 import api from '../../../_services/api';
 import Button from '../../../components/Button';
-import Input from '../../../components/Form/Input';
 import { useAuth } from '../../../hooks/auth';
 import { useLoading } from '../../../hooks/loading';
 import { useToast } from '../../../hooks/toast';
-import getValidationErros from '../../../utils/getValidationErros';
-
-interface ProfileFormData {
-  name: string;
-  email: string;
-  old_password: string;
-  password: string;
-  password_confirmation: string;
-}
+import IOrder from '../../../types/order';
+import { dateFormatted, dateHourFormatted } from '../../../utils';
+import {
+  Container,
+  Header,
+  Item,
+  HeaderItem,
+  ContentItem,
+  ContentDetail,
+  ButtonDetail,
+} from './styles';
 
 const Order: React.FC = () => {
-  const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
-  const history = useHistory();
+  //const history = useHistory();
   const { addLoading, removeLoading } = useLoading();
-  const { user, updateUser } = useAuth();
+  //const { user, updateUser } = useAuth();
 
-  const handleSubmit = useCallback(
-    async (data: ProfileFormData) => {
-      try {
-        formRef.current?.setErrors({});
+  const [orders, setOrders] = useState<IOrder[]>([] as IOrder[]);
 
-        addLoading({
-          loading: true,
-          description: 'Aguarde ...',
-        });
+  const loadOrders = useCallback(async () => {
+    try {
+      addLoading({
+        loading: true,
+        description: 'Aguarde ...',
+      });
 
-        const schema = Yup.object().shape({
-          name: Yup.string().required('Nome obrigatório'),
-          email: Yup.string()
-            .required('E-mail obrigatório')
-            .email('Digite um email válido'),
-        });
+      const { data } = await api.get(`orders/courses/list`);
+      const newOrders = data.map((order) => {
+        return {
+          ...order,
+          course: { ...order.course, detailUpDow: false },
+        };
+      });
+      console.log('My data:', data);
+      setOrders(newOrders);
+    } catch (err) {
+      addToast({
+        type: 'error',
+        title: 'Falha ao deletar!',
+        description: 'Não foi possível carreagar os pedidos, tente novamente!',
+      });
+    } finally {
+      removeLoading();
+    }
+  }, [addLoading, addToast, setOrders, removeLoading]);
 
-        await schema.validate(data, {
-          abortEarly: false,
-        });
+  useMemo(() => {
+    loadOrders();
+  }, [loadOrders]);
 
-        const res = await api.put('/profile', data);
+  const [detailUpDow, setDetailUpDow] = useState<boolean>(false);
 
-        updateUser(res.data);
+  const loadDetail = useCallback(
+    (idItem: string) => {
+      console.log('CPasou:', idItem);
+      setOrders(
+        orders.map((order) => {
+          console.log('My order: ', order);
+          if (order.id === idItem) {
+            console.log('CPasou: eentrou==>', idItem);
 
-        history.push('/order');
+            return {
+              ...order,
+              course: {
+                ...order.course,
+                created_at: dateHourFormatted(String(order.course.created_at)),
+                detailUpDow: !order.course.detailUpDow,
+              },
+            };
+          }
 
-        addToast({
-          type: 'success',
-          title: 'Perfil atualizando',
-          description:
-            'Suas informações do perfil foram atualizados com sucesso!',
-        });
-      } catch (err) {
-        if (err instanceof Yup.ValidationError) {
-          const errors = getValidationErros(err);
-          formRef.current?.setErrors(errors);
-          return;
-        }
+          return order;
+        }),
+      );
 
-        addToast({
-          type: 'error',
-          title: 'Falha na atualização do perfil!',
-          description: 'Falha na atualização do perfil, tente novamente!',
-        });
-      } finally {
-        removeLoading();
-      }
+      setDetailUpDow(!detailUpDow);
     },
-    [addToast, addLoading, removeLoading, history, updateUser],
+    [setOrders, orders, setDetailUpDow, detailUpDow],
   );
 
   return (
     <Layout>
-      <Form
-        ref={formRef}
-        initialData={{
-          name: user.person.name,
-          email: user.person.email,
-        }}
-        onSubmit={handleSubmit}
-      >
+      <Container>
         <Header>
-          <h2>Meus Pedidos!</h2>
-
-          <Button type="submit">
-            <span>
-              <FiCheck />
-            </span>
-            <strong>Salvar</strong>
-          </Button>
+          <h2>Minhas compras!</h2>
         </Header>
 
-        <fieldset>
-          <legend>Dados</legend>
+        <ul>
+          {orders.length > 0 &&
+            orders.map((item) => (
+              <Item key={item.id} detail={item.course.detailUpDow}>
+                <HeaderItem>
+                  <button type="button" onClick={() => loadDetail(item.id)}>
+                    <span>
+                      {item.course.detailUpDow ? (
+                        <FaAngleDown />
+                      ) : (
+                        <FaAngleUp />
+                      )}
+                    </span>
+                    <strong>Minhas compras!</strong>
+                  </button>
+                  <h3>Status</h3>
+                </HeaderItem>
 
-          <Input label="Nome" name="name" icon={FiUser} placeholder="Nome" />
+                <ContentItem>
+                  <img src={item.course.image_url} alt={item.course.name} />
+                  <div>
+                    <strong>Preparatório</strong>
+                    <span>{item.course.name}</span>
+                  </div>
+                </ContentItem>
+                {item.course.detailUpDow && (
+                  <>
+                    <ContentDetail>
+                      <article>
+                        <div>
+                          <span />
+                          <span />
+                          <span />
+                          <strong>
+                            <FaHandshake />
+                          </strong>
+                        </div>
+                        <hr />
+                      </article>
+                      <section>
+                        <div>
+                          <strong>
+                            <span>Pedido</span>
+                            <span>Recebido</span>
+                          </strong>
+                          <span>{item.course.created_at}</span>
+                        </div>
 
-          <Input
-            label="Email"
-            name="email"
-            icon={FiMail}
-            placeholder="E-mail"
-          />
-        </fieldset>
-      </Form>
+                        <div>
+                          <strong>
+                            <span>Pagamento</span>
+                            <span>Aprovado</span>
+                          </strong>
+                          <span>{item.course.created_at}</span>
+                        </div>
+                        <div>
+                          <strong>
+                            <span>Pedido</span>
+                            <span>Recebido</span>
+                          </strong>
+                          <span>{item.course.created_at}</span>
+                        </div>
+                        <div>
+                          <strong>
+                            <span>Pedido</span>
+                            <span>Recebido</span>
+                          </strong>
+                          <span>{item.course.created_at}</span>
+                        </div>
+                      </section>
+                    </ContentDetail>
+
+                    <ButtonDetail>
+                      <Button type="button">
+                        <span>
+                          <FiCheck />
+                        </span>
+                        <strong>Salvar</strong>
+                      </Button>
+                      <Button type="button">
+                        <span>
+                          <FiCheck />
+                        </span>
+                        <strong>Salvar</strong>
+                      </Button>
+                      <Button type="button">
+                        <span>
+                          <FiCheck />
+                        </span>
+                        <strong>Salvar</strong>
+                      </Button>
+                    </ButtonDetail>
+                  </>
+                )}
+              </Item>
+            ))}
+        </ul>
+      </Container>
     </Layout>
   );
 };
