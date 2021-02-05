@@ -2,9 +2,6 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { FiCheckSquare, FiArrowLeft } from 'react-icons/fi';
 import { useHistory, useParams } from 'react-router-dom';
 
-import { formatRelative, subHours } from 'date-fns';
-import pt from 'date-fns/locale/pt';
-
 import Layout from '../../_layouts/auth';
 import { GobackButton } from '../../_layouts/auth/styles';
 import api from '../../../_services/api';
@@ -16,6 +13,7 @@ import ModalEditAnswer from '../../../components/ModalEditAnswer';
 import ModalEditComment from '../../../components/ModalEditComment';
 import { useLoading } from '../../../hooks/loading';
 import { useToast } from '../../../hooks/toast';
+import { dateFormatted } from '../../../utils';
 import Comment from './Comment';
 import ListThemes from './ListThemes';
 import Movie from './Movie';
@@ -120,14 +118,6 @@ const DisciplineThemes: React.FC = () => {
   useEffect(() => {
     loadThemes();
   }, [loadThemes]);
-
-  const dateFormatted = useCallback(
-    (time: string) =>
-      formatRelative(subHours(new Date(time), 3), new Date(), {
-        locale: pt,
-      }),
-    [],
-  );
 
   const handlerLoadComments = useCallback(
     async (movie_id: string) => {
