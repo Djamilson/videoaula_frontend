@@ -1,15 +1,14 @@
-import { shade } from 'polished';
 import styled from 'styled-components';
 
 import { colors } from '../../../../styles';
 
-export const Container = styled.div`
-  padding-left: 130px;
-  padding-right: 50px;
-`;
-
 export const ContentTable = styled.table`
   border-collapse: collapse;
+  width: 100%;
+  max-width: 510px;
+  min-width: 200px;
+  margin-bottom: 70px;
+
   thead th {
     color: #999;
     text-align: center;

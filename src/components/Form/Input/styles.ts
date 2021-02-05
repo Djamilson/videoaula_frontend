@@ -80,6 +80,8 @@ export const Container = styled.div<ContainerProps>`
 
   svg {
     margin-right: 10px;
+    height: 20 import!;
+    width: 20;
   }
 `;
 
@@ -89,7 +91,7 @@ export const Error = styled(Tooltip)`
   margin-left: 16px;
 
   svg {
-    margin: 0;
+    margin: 0px;
   }
 
   span {

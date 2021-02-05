@@ -60,7 +60,7 @@ const Input: React.FC<InputProps> = ({
         isFilled={isFilled}
         isFocused={isFocused}
       >
-        {Icon && <Icon size={16} />}
+        {Icon && <Icon />}
         <input
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}

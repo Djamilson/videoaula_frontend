@@ -1,6 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { FiLock } from 'react-icons/fi';
-import { FiCheck } from 'react-icons/fi';
+import { FiCheck, FiLock } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 
 import { FormHandles } from '@unform/core';
@@ -8,7 +7,6 @@ import * as Yup from 'yup';
 
 import Layout from '../_layout';
 import { Form, Header } from '../_layout/styles';
-import { ScheduleItem } from '../../_layouts/auth/styles';
 import api from '../../../_services/api';
 import Button from '../../../components/Button';
 import Input from '../../../components/Form/Input';
@@ -16,6 +14,7 @@ import { useAuth } from '../../../hooks/auth';
 import { useLoading } from '../../../hooks/loading';
 import { useToast } from '../../../hooks/toast';
 import getValidationErros from '../../../utils/getValidationErros';
+import { ScheduleItem } from './styles';
 
 interface PasswordFormData {
   old_password: string;
@@ -40,7 +39,6 @@ const Password: React.FC = () => {
           description: 'Aguarde ...',
         });
 
-        console.log('data:q ', data);
         const schema = Yup.object().shape({
           old_password: Yup.string().required('Campo obrigatório'),
           password: Yup.string().when('old_password', {

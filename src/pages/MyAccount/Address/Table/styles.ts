@@ -2,19 +2,10 @@ import styled from 'styled-components';
 
 import { colors } from '../../../../styles';
 
-export const Container = styled.div``;
-
-export const Content = styled.div`
-  margin-top: 30px;
-  padding: 30px;
-  background: #fff;
-  border-radius: 4px;
-`;
-
 export const ContentTable = styled.table`
   border-collapse: collapse;
-  width: 30%;
-  max-width: 450px;
+  width: 100%;
+  max-width: 510px;
   min-width: 200px;
   margin-bottom: 70px;
 
