@@ -1,16 +1,15 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FaAngleDown, FaAngleUp, FaHandshake } from 'react-icons/fa';
-import { FiCheck } from 'react-icons/fi';
-import { useHistory } from 'react-router-dom';
+import { FiCheck, FiLogIn } from 'react-icons/fi';
+import { Link, useHistory } from 'react-router-dom';
 
 import Layout from '../_layout';
 import api from '../../../_services/api';
 import Button from '../../../components/Button';
-import { useAuth } from '../../../hooks/auth';
 import { useLoading } from '../../../hooks/loading';
 import { useToast } from '../../../hooks/toast';
 import IOrder from '../../../types/order';
-import { dateFormatted, dateHourFormatted } from '../../../utils';
+import { dateHourFormatted } from '../../../utils';
 import {
   Container,
   Header,
@@ -19,6 +18,7 @@ import {
   ContentItem,
   ContentDetail,
   ButtonDetail,
+  ButtonLink,
 } from './styles';
 
 const Order: React.FC = () => {
@@ -170,24 +170,19 @@ const Order: React.FC = () => {
                     </ContentDetail>
 
                     <ButtonDetail>
-                      <Button type="button">
+                      <button type="button">
                         <span>
                           <FiCheck />
                         </span>
-                        <strong>Salvar</strong>
-                      </Button>
-                      <Button type="button">
+                        <strong>Cancelar compra</strong>
+                      </button>
+
+                      <Link to="/signup">
                         <span>
                           <FiCheck />
                         </span>
-                        <strong>Salvar</strong>
-                      </Button>
-                      <Button type="button">
-                        <span>
-                          <FiCheck />
-                        </span>
-                        <strong>Salvar</strong>
-                      </Button>
+                        <strong>Detalhes da compra</strong>
+                      </Link>
                     </ButtonDetail>
                   </>
                 )}

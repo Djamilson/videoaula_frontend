@@ -269,22 +269,24 @@ export const ContentDetail = styled.div`
       z-index: 1;
       margin-top: 10px;
       strong {
-        height: 32px;
-        width: 32px;
+        height: 40px;
+        width: 40px;
+
+        padding: 6px;
+        text-align: center;
+
         background: ${colors.colorTitleInPrimary};
         border-radius: 50%;
-        display: inline-block;
         border: 2px solid ${colors.colorSecundaryDark};
         svg {
-          margin-top: 4px;
           width: 22px;
           height: 22px;
           color: ${colors.colorSecundaryDark};
         }
       }
       span {
-        height: 20px;
-        width: 20px;
+        height: 15px;
+        width: 15px;
         background-color: ${colors.colorSecundaryDark};
         border-radius: 50%;
         display: inline-block;
@@ -295,7 +297,7 @@ export const ContentDetail = styled.div`
     hr {
       height: 3px;
       width: 100%;
-      margin: -16px auto;
+      margin: -20px auto;
 
       background-image: linear-gradient(
         to right,
@@ -305,7 +307,7 @@ export const ContentDetail = styled.div`
       );
       background-size: 202% 100%;
       //background-position: 66% 0;
-      background-position: 33% 0;
+      //background-position: 36% 0;
       //background-position: 100% 0;
       border: 0;
     }
@@ -349,6 +351,7 @@ export const ContentDetail = styled.div`
         font-size: 12px;
         color: ${colors.colorTextcomplement};
         font-style: italic;
+        font-weight: bold;
       }
     }
   }
@@ -368,4 +371,152 @@ export const ButtonDetail = styled.div`
   align-items: center;
   justify-content: space-around;
   border: 0;
+
+  button {
+    color: ${colors.colorTextcomplement};
+    text-decoration: none;
+    border: 1px solid ${colors.colorTextcomplement};
+    line-height: 2.5;
+    text-align: center;
+    border-radius: 0rem;
+    width: 100%;
+    min-width: 25%;
+    height: 2.4rem;
+    background: none;
+    font: 700 0.8rem Poppins;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+
+    span {
+      display: block;
+      background: none;
+      width: 32px;
+      height: 2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s;
+      svg {
+        color: ${colors.colorTextInWhite};
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    strong {
+      flex: 1;
+      text-align: center;
+      color: ${colors.colorTextInWhite};
+    }
+
+    &:hover {
+      color: ${shade(0.2, `${colors.colorTitleInPrimary}`)};
+      background: ${shade(0.2, `${colors.colorTextInWhite}`)};
+    }
+  }
+
+  button + a {
+    margin-left: 20px;
+  }
+
+  a {
+    color: ${colors.colorTextcomplement};
+    text-decoration: none;
+    border: 1px solid ${colors.colorTextcomplement};
+    line-height: 2.5;
+    text-align: center;
+    border-radius: 0rem;
+    width: 100%;
+    min-width: 25%;
+    height: 2.4rem;
+    background: none;
+    font: 700 0.8rem Poppins;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+
+    span {
+      display: block;
+      background: none;
+      width: 32px;
+      height: 2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s;
+      svg {
+        color: ${colors.colorTextInWhite};
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    strong {
+      flex: 1;
+      text-align: center;
+      color: ${colors.colorTextInWhite};
+    }
+
+    &:hover {
+      color: ${shade(0.2, `${colors.colorTitleInPrimary}`)};
+      background: ${shade(0.2, `${colors.colorTextInWhite}`)};
+    }
+  }
+`;
+
+export const ButtonLink = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  margin-top: -20px;
+
+  a {
+    color: ${colors.colorTextcomplement};
+    text-decoration: none;
+    border: 1px solid ${colors.colorTextcomplement};
+    line-height: 2.5;
+    font-size: 0.8rem;
+    text-align: center;
+    border-radius: 0rem;
+    width: 25%;
+    min-width: 25%;
+    height: 2.4rem;
+    background: none;
+    font: 700 1rem Poppins;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+
+    span {
+      display: block;
+      background: none;
+      width: 32px;
+      height: 2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s;
+      svg {
+        color: ${colors.colorTextInWhite};
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    strong {
+      flex: 1;
+      text-align: center;
+      color: ${colors.colorTextInWhite};
+    }
+
+    &:hover {
+      color: ${shade(0.2, `${colors.colorTextInWhite}`)};
+      background: ${shade(0.2, `${colors.colorTextInWhite}`)};
+    }
+  }
 `;
