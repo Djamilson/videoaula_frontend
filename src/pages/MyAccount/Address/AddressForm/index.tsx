@@ -186,6 +186,7 @@ const AddressForm: React.FC = () => {
       history,
       user,
       updateUser,
+      stateSelect.value,
     ],
   );
 

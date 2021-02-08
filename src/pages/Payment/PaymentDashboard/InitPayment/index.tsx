@@ -5,7 +5,7 @@ import React, {
   useState,
   ChangeEvent,
 } from 'react';
-import { FaUser } from 'react-icons/fa';
+import { FaBarcode, FaUser } from 'react-icons/fa';
 import { FiArrowLeft, FiCheck } from 'react-icons/fi';
 import { MdCheck } from 'react-icons/md';
 import PaymentCard from 'react-payment-card-component';
@@ -47,6 +47,8 @@ import {
   ButtonCreditCard,
   ButtonAnother,
   Content,
+  ScheduleItemCard,
+  ButtonBoleto,
 } from './styles';
 
 interface ParamTypes {
@@ -80,14 +82,18 @@ const InitPayment: React.FC = () => {
 
   const { addLoading, removeLoading } = useLoading();
 
-  const [paymentForm, setPaymentForm] = useState<boolean>(false);
+  const [paymentForm, setPaymentForm] = useState<number>(0);
 
   const handlePaymentFormCreditCart = useCallback(() => {
-    setPaymentForm(false);
+    setPaymentForm(0);
+  }, [setPaymentForm]);
+
+  const handlePaymentFormBoleto = useCallback(() => {
+    setPaymentForm(1);
   }, [setPaymentForm]);
 
   const handlePaymentFormAnother = useCallback(() => {
-    setPaymentForm(true);
+    setPaymentForm(2);
   }, [setPaymentForm]);
 
   const [course, setCourse] = useState<ICourse>({} as ICourse);
@@ -134,7 +140,7 @@ const InitPayment: React.FC = () => {
     loadInstallment(course);
   }, [course, loadInstallment, phoneId, addressId]);
 
-  const handleSubmit = useCallback(
+  const handleSubmitCard = useCallback(
     async (data_: IFormData) => {
       try {
         formRef.current?.setErrors({});
@@ -157,7 +163,6 @@ const InitPayment: React.FC = () => {
         await schema.validate(data_, {
           abortEarly: false,
         });
-        console.log('data_::', data_);
 
         const month = data_.card_expiration_date.slice(0, -5);
         const year = data_.card_expiration_date.substr(-2);
@@ -179,7 +184,7 @@ const InitPayment: React.FC = () => {
         const amount = Number(course.price) * 100;
         const fee = 0;
 
-        await api.post('orders/payments/new', {
+        await api.post('orders/payments/card/new', {
           card_hash,
           fee,
           installments,
@@ -221,6 +226,68 @@ const InitPayment: React.FC = () => {
       history,
       installments,
     ],
+  );
+
+  const handleSubmitBoleto = useCallback(async () => {
+    try {
+      addLoading({
+        loading: true,
+        description: 'Aguarde ...',
+      });
+
+      const amount = Number(course.price) * 100;
+      const fee = 0;
+
+      const { data } = await api.post('orders/payments/boleto/new', {
+        fee,
+        installments: 1,
+        courses: [{ id: courseId }],
+        amount: 23387,
+      });
+
+      console.log('My data:::', data);
+
+      const form = await data.json_result.json();
+
+      console.log('Myiidyfia', form);
+
+      window.open(
+        `https://api.pagar.me/1/boletos/5f5bf4a91426604789fc4afc?format=pdf`,
+        '_blank',
+      );
+
+      //history.push('https://api.pagar.me/1/boletos/test_ckj9yiyvy1obb0gm5g9yfpgbw?format=pdf');
+      history.push('/payments/dashboard/init-payment/finally/successes');
+
+      addToast({
+        type: 'success',
+        title: 'Pagamento efetuado!',
+        description: 'Pagamento efetuado com sucesso!',
+      });
+    } catch (err) {
+      console.log('err:', err);
+
+      addToast({
+        type: 'error',
+        title: 'Falha no pagamento!',
+        description:
+          'Ocorreu uma falha ao tentar fazer o pagamento, tente novamente!',
+      });
+    } finally {
+      removeLoading();
+    }
+  }, [addToast, addLoading, removeLoading, course.price, courseId, history]);
+
+  const handleSubmit = useCallback(
+    async (data: IFormData) => {
+      console.log('console:::: Data', data);
+      if (Object.keys(data).length > 0) {
+        handleSubmitCard(data);
+      } else {
+        handleSubmitBoleto();
+      }
+    },
+    [handleSubmitBoleto, handleSubmitCard],
   );
 
   function handleSelectInstallments(event: ChangeEvent<HTMLSelectElement>) {
@@ -279,13 +346,7 @@ const InitPayment: React.FC = () => {
 
   return (
     <Layout>
-      <Form
-        ref={formRef}
-        initialData={{ course_price: course.price }}
-        onSubmit={handleSubmit}
-      >
-        <InputHidder hidden name="course_price" />
-
+      <Form ref={formRef} onSubmit={handleSubmit}>
         <Header>
           <GobackButton type="button" onClick={() => goBack()}>
             <span>
@@ -304,7 +365,7 @@ const InitPayment: React.FC = () => {
           <legend>Formas de Pagamento</legend>
 
           <ButtonsContainer>
-            {paymentForm ? (
+            {paymentForm !== 0 && (
               <ButtonCreditCard
                 type="button"
                 onClick={() => handlePaymentFormCreditCart()}
@@ -312,7 +373,17 @@ const InitPayment: React.FC = () => {
                 <img src={studyIcon} alt="Cartão de Crédito" />
                 Cartão de Crédito
               </ButtonCreditCard>
-            ) : (
+            )}
+            {paymentForm !== 1 && (
+              <ButtonBoleto
+                type="button"
+                onClick={() => handlePaymentFormBoleto()}
+              >
+                <img src={giveClassesIcon} alt="Boleto" />
+                Boleto bancário
+              </ButtonBoleto>
+            )}
+            {paymentForm !== 2 && (
               <ButtonAnother
                 type="button"
                 onClick={() => handlePaymentFormAnother()}
@@ -324,7 +395,7 @@ const InitPayment: React.FC = () => {
           </ButtonsContainer>
         </fieldset>
 
-        {!paymentForm && (
+        {paymentForm === 0 && (
           <>
             <fieldset>
               <legend>Selecionado [Cartão de Crédito] </legend>
@@ -371,7 +442,7 @@ const InitPayment: React.FC = () => {
                   />
                 </fieldset>
                 <fieldset>
-                  <ScheduleItem>
+                  <ScheduleItemCard>
                     <PaymentCard
                       style={{ widt: '100px' }}
                       bank="default"
@@ -384,7 +455,7 @@ const InitPayment: React.FC = () => {
                       expiration={expirationCart}
                       flipped={flipped}
                     />
-                  </ScheduleItem>
+                  </ScheduleItemCard>
                 </fieldset>
               </ScheduleItem>
 
@@ -397,10 +468,23 @@ const InitPayment: React.FC = () => {
             </fieldset>
           </>
         )}
+
+        {paymentForm === 1 && (
+          <fieldset>
+            <legend>Selecionado [Boleto]</legend>
+
+            <MyButton type="submit">
+              <span>
+                <FaBarcode />
+              </span>
+              <strong>Gerar boleto</strong>
+            </MyButton>
+          </fieldset>
+        )}
       </Form>
 
-      <Content>
-        {paymentForm && (
+      {paymentForm === 2 && (
+        <Content>
           <fieldset>
             <legend>Selecionado [Transferência]</legend>
 
@@ -433,11 +517,11 @@ const InitPayment: React.FC = () => {
               </span>
             </div>
           </fieldset>
-        )}
-      </Content>
+        </Content>
+      )}
 
       <Footer>
-        {paymentForm && (
+        {paymentForm === 2 && (
           <span>
             <h2>O comprovante deve ser enviando para o email</h2>
             <strong>djamilson@gmail.com</strong>

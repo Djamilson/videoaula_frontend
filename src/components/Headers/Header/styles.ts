@@ -11,9 +11,8 @@ interface Props {
 const fadeIn = keyframes`
   0% {
     opacity: 0;
-    transform: translateY(-142px);
     background: ${colors.colorPrimary};
-  }
+     }
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -21,17 +20,6 @@ const fadeIn = keyframes`
   }
 `;
 
-const fadeOut = keyframes`
-0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(80px);
-  }
-
-`;
 export const Container = styled.div<Props>`
   position: sticky;
   top: 0;
@@ -40,7 +28,7 @@ export const Container = styled.div<Props>`
   bottom: 0;
 
   transition: all 0.5s ease;
-  animation: ${(props) => (props.visible ? fadeOut : fadeIn)} 500ms linear;
+  animation: ${(props) => props.visible && fadeIn} 500ms linear;
 
   padding: 0 3rem;
   padding-top: ${(props) => (props.visible ? '1rem' : '3rem')};
