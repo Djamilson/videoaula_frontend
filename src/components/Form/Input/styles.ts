@@ -33,7 +33,7 @@ export const Container = styled.div<ContainerProps>`
   background: ${colors.colorInputBackground};
   border-radius: 7px;
   border: 1px solid ${colors.colorLineInWhite};
-  padding: 10px 15px;
+  padding: 10px 15px 10px 10px;
   width: 100%;
   color: #666360;
 
@@ -65,6 +65,7 @@ export const Container = styled.div<ContainerProps>`
 
 
   input {
+    margin-left: 22px;
     flex: 1;
     border: 0;
     font-size: 0.9rem;
@@ -79,16 +80,14 @@ export const Container = styled.div<ContainerProps>`
   }
 
   svg {
-    margin-right: 10px;
-    height: 20 import!;
-    width: 20;
+    margin-right: -15px;
   }
 `;
 
 export const Error = styled(Tooltip)`
   z-index: 99;
   height: 20px;
-  margin-left: 16px;
+  margin-left: 0px;
 
   svg {
     margin: 0px;
