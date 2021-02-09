@@ -32,10 +32,7 @@ const Select: React.FC<Props> = ({
   ...rest
 }) => {
   async function callApi(valueItem: string) {
-    console.log('minha city', valueItem);
-    console.log('my state', selectedUf);
-
-    const data = await api
+    const data = api
       .get(`cities/${selectedUf}/select`, {
         params: {
           q: `${valueItem}`,
@@ -44,7 +41,6 @@ const Select: React.FC<Props> = ({
         },
       })
       .then((res) => {
-        console.log('minha city', res.data);
         return res.data;
       })
       .then((final) =>

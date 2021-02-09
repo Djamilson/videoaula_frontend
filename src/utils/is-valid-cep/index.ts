@@ -26,7 +26,6 @@ export function format(cep: string): string {
 }
 
 export function isValidCEP(cep: string) {
-  console.log('CEP function:', cep);
   if (!cep || typeof cep !== 'string') return false;
 
   const digits = onlyNumbers(cep);

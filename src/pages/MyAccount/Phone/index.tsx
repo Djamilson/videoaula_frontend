@@ -35,7 +35,6 @@ const Phone: React.FC = () => {
 
   const loadPhones = useCallback(async () => {
     const { data } = await api.get(`phones/users`);
-    console.log('Fones', data);
 
     setPhones(data);
   }, [setPhones]);
@@ -67,9 +66,7 @@ const Phone: React.FC = () => {
       });
 
       setPhones([data, ...serealizablePhones]);
-    } catch (erro) {
-      console.log('erro no cad:', erro);
-    }
+    } catch (erro) {}
   }
 
   function toggleModalEditPhone(): void {

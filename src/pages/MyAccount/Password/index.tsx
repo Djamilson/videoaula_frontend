@@ -59,7 +59,6 @@ const Password: React.FC = () => {
           abortEarly: false,
         });
 
-        console.log('data: ', data);
         await api.put('/profile/passwords', data);
 
         history.push('/orders');

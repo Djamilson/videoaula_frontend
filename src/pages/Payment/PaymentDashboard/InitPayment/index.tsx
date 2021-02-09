@@ -199,7 +199,6 @@ const InitPayment: React.FC = () => {
           description: 'Pagamento efetuado com sucesso!',
         });
       } catch (err) {
-        console.log('err:', err);
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErros(err);
           formRef.current?.setErrors(errors);
@@ -258,8 +257,6 @@ const InitPayment: React.FC = () => {
         description: 'Pagamento efetuado com sucesso!',
       });
     } catch (err) {
-      console.log('err:', err);
-
       addToast({
         type: 'error',
         title: 'Falha no pagamento!',
@@ -273,7 +270,6 @@ const InitPayment: React.FC = () => {
 
   const handleSubmit = useCallback(
     async (data: IFormData) => {
-      console.log('console:::: Data', data);
       if (Object.keys(data).length > 0) {
         handleSubmitCard(data);
       } else {
@@ -298,10 +294,8 @@ const InitPayment: React.FC = () => {
 
   const handleInputChangeNumber = useCallback(
     (e: any) => {
-      console.log(e.target.value);
       setNumberCart(e.target.value);
       masks.cardNumberByMask.onChange(e);
-      console.log('Meu cartão::', getCardType(onlyNumbers(e.target.value)));
       setCardType(getCardType(onlyNumbers(e.target.value)));
       setFlipped(false);
     },
@@ -311,7 +305,6 @@ const InitPayment: React.FC = () => {
 
   const handleInputChangeName = useCallback(
     (e: any) => {
-      console.log(e.target.value);
       setNameCart(e.target.value);
       masks.lettlerByMask.onChange(e);
       setFlipped(false);

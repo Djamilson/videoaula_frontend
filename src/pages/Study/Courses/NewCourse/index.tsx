@@ -123,7 +123,6 @@ const NewCourse: React.FC = () => {
           });
         }
       } catch (err) {
-        console.log('erro', err);
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErros(err);
           formRef.current?.setErrors(errors);

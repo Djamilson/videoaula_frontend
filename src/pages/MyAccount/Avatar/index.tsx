@@ -34,7 +34,6 @@ const Profile: React.FC = () => {
 
           const res = await api.patch('/users/avatar', data);
 
-          console.log('res:', res.data);
           const { avatar, avatar_url } = res.data.person;
 
           const newUser = {
@@ -50,7 +49,6 @@ const Profile: React.FC = () => {
             title: 'Avatar atualizado!',
           });
         } catch (err) {
-          console.log('==>erro ', err);
           addToast({
             type: 'error',
             title: 'Falha ao atualizar o avatar!',

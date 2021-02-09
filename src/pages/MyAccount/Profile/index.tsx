@@ -52,7 +52,6 @@ const Profile: React.FC = () => {
           abortEarly: false,
         });
 
-        console.log('email:', data);
         const res = await api.put('/profile', data);
 
         updateUser(res.data);
@@ -66,7 +65,6 @@ const Profile: React.FC = () => {
             'Suas informações do perfil foram atualizados com sucesso!',
         });
       } catch (err) {
-        console.log('==>>', err);
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErros(err);
           formRef.current?.setErrors(errors);

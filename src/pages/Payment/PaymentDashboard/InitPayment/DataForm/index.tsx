@@ -75,7 +75,6 @@ const DataForm: React.FC = () => {
 
   const loadPerson = useCallback(async () => {
     const { data } = await api.get(`persons/${personId}`);
-    console.log('...>>', data);
     setPerson(data);
   }, [personId]);
 
@@ -183,9 +182,9 @@ const DataForm: React.FC = () => {
             abortEarly: false,
           });
           const { phone } = data;
-          console.log('me Phone:', data.phone);
+
           const newPhone = await api.post('phones/users', { phone });
-          console.log('me Phone:', newPhone);
+
           updateUser({
             ...user,
             person: {
@@ -212,7 +211,6 @@ const DataForm: React.FC = () => {
 
           const { street, complement, neighborhood, zip_code, number } = data;
 
-          console.log('me Phone:', data);
           const newAddress = await api.post('addresses', {
             number,
             street,
@@ -277,9 +275,8 @@ const DataForm: React.FC = () => {
             zip_code,
             city_id: citySelect.value,
           };
-          console.log('vai salva:', meData);
+
           const newData = await api.post('persons/documents/addresses', meData);
-          console.log('newData:::', newData.data);
 
           updateUser({
             ...user,
@@ -320,9 +317,7 @@ const DataForm: React.FC = () => {
             phone,
           };
 
-          console.log('vai salva:', meData);
           const newData = await api.post('persons/documents/phones', meData);
-          console.log('newData:::', newData.data);
 
           updateUser({
             ...user,
@@ -369,9 +364,7 @@ const DataForm: React.FC = () => {
             phone,
           };
 
-          console.log('vai salva:', meData);
           const newData = await api.post('persons/addresses/phones', meData);
-          console.log('newData:::', newData.data);
 
           updateUser({
             ...user,
@@ -391,7 +384,6 @@ const DataForm: React.FC = () => {
 
         history.push('/payments/dashboards');
       } catch (err) {
-        console.log('erro ', err);
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);
@@ -425,7 +417,6 @@ const DataForm: React.FC = () => {
   const handleSelectCity = useCallback(
     (selectedOption: any) => {
       setCitySelect(selectedOption);
-      console.log('my city', selectedOption);
       setEdit(false);
     },
     [setEdit, setCitySelect],

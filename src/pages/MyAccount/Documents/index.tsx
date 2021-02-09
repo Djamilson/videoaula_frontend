@@ -90,9 +90,8 @@ const Documents: React.FC = () => {
 
   const changerBirdthDate = useCallback(() => {
     setDisabledBirdthDate(!disabledBirdthDate);
-    console.log('=>> my', formRef.current);
+
     const nameInputBirdthDate = formRef.current?.getFieldRef('birdthDate');
-    console.log('=>> nameInputBirdthDate:', nameInputBirdthDate);
     nameInputBirdthDate.focus();
   }, [setDisabledBirdthDate, disabledBirdthDate, formRef]);
 
