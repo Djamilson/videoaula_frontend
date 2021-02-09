@@ -373,16 +373,16 @@ export const ButtonDetail = styled.div`
   border: 0;
 
   button {
-    color: ${colors.colorTextcomplement};
+    color: ${colors.colorButtonText};
     text-decoration: none;
-    border: 1px solid ${colors.colorTextcomplement};
-    line-height: 2.5;
+    border: none;
+    line-height: 2.7;
     text-align: center;
     border-radius: 0rem;
     width: 100%;
     min-width: 25%;
-    height: 2.4rem;
-    background: none;
+    height: 2.7rem;
+    background: ${colors.colorButtonBackground};
     font: 700 0.8rem Poppins;
     display: flex;
     align-items: center;
@@ -393,13 +393,13 @@ export const ButtonDetail = styled.div`
       display: block;
       background: none;
       width: 32px;
-      height: 2.4rem;
+      height: 2.7rem;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: background-color 0.2s;
       svg {
-        color: ${colors.colorTextInWhite};
+        color: ${colors.colorButtonText};
         width: 20px;
         height: 20px;
       }
@@ -408,12 +408,13 @@ export const ButtonDetail = styled.div`
     strong {
       flex: 1;
       text-align: center;
-      color: ${colors.colorTextInWhite};
+      color: ${colors.colorButtonText};
     }
 
     &:hover {
-      color: ${shade(0.2, `${colors.colorTitleInPrimary}`)};
-      background: ${shade(0.2, `${colors.colorTextInWhite}`)};
+      color: ${shade(0.2, `${colors.colorButtonText}`)};
+      background: ${shade(0.2, `${colors.colorButtonBackground}`)};
+      border-radius: 8px;
     }
   }
 
@@ -422,16 +423,16 @@ export const ButtonDetail = styled.div`
   }
 
   a {
-    color: ${colors.colorTextcomplement};
+    color: ${colors.colorButtonBackground};
     text-decoration: none;
-    border: 1px solid ${colors.colorTextcomplement};
+    border: 2px solid ${colors.colorButtonBackground};
     line-height: 2.5;
     text-align: center;
     border-radius: 0rem;
     width: 100%;
     min-width: 25%;
-    height: 2.4rem;
-    background: none;
+    height: 2.7rem;
+    background: ${colors.colorBoxBase};
     font: 700 0.8rem Poppins;
     display: flex;
     align-items: center;
@@ -442,13 +443,13 @@ export const ButtonDetail = styled.div`
       display: block;
       background: none;
       width: 32px;
-      height: 2.4rem;
+      height: 2.7rem;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: background-color 0.2s;
       svg {
-        color: ${colors.colorTextInWhite};
+        color: ${colors.colorButtonBackground};
         width: 20px;
         height: 20px;
       }
@@ -457,66 +458,13 @@ export const ButtonDetail = styled.div`
     strong {
       flex: 1;
       text-align: center;
-      color: ${colors.colorTextInWhite};
+      color: ${colors.colorButtonBackground};
     }
 
     &:hover {
-      color: ${shade(0.2, `${colors.colorTitleInPrimary}`)};
-      background: ${shade(0.2, `${colors.colorTextInWhite}`)};
-    }
-  }
-`;
+      border-radius: 8px;
 
-export const ButtonLink = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 0;
-  margin-top: -20px;
-
-  a {
-    color: ${colors.colorTextcomplement};
-    text-decoration: none;
-    border: 1px solid ${colors.colorTextcomplement};
-    line-height: 2.5;
-    font-size: 0.8rem;
-    text-align: center;
-    border-radius: 0rem;
-    width: 25%;
-    min-width: 25%;
-    height: 2.4rem;
-    background: none;
-    font: 700 1rem Poppins;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s;
-
-    span {
-      display: block;
-      background: none;
-      width: 32px;
-      height: 2.4rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background-color 0.2s;
-      svg {
-        color: ${colors.colorTextInWhite};
-        width: 20px;
-        height: 20px;
-      }
-    }
-
-    strong {
-      flex: 1;
-      text-align: center;
-      color: ${colors.colorTextInWhite};
-    }
-
-    &:hover {
-      color: ${shade(0.2, `${colors.colorTextInWhite}`)};
-      background: ${shade(0.2, `${colors.colorTextInWhite}`)};
+      color: ${shade(0.2, `${colors.colorBoxBase}`)};
     }
   }
 `;

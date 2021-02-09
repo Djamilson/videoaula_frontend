@@ -27,7 +27,6 @@ import api from '../../../../_services/api';
 import giveClassesIcon from '../../../../assets/images/icons/give-classes.svg';
 import studyIcon from '../../../../assets/images/icons/study.svg';
 import Input from '../../../../components/Form/Input';
-import InputHidder from '../../../../components/Form/InputHidder';
 import { useAuth } from '../../../../hooks/auth';
 import { useLoading } from '../../../../hooks/loading';
 import { useToast } from '../../../../hooks/toast';
@@ -242,17 +241,11 @@ const InitPayment: React.FC = () => {
         fee,
         installments: 1,
         courses: [{ id: courseId }],
-        amount: 23387,
+        amount,
       });
 
-      console.log('My data:::', data);
-
-      const form = await data.json_result.json();
-
-      console.log('Myiidyfia', form);
-
       window.open(
-        `https://api.pagar.me/1/boletos/5f5bf4a91426604789fc4afc?format=pdf`,
+        `https://api.pagar.me/${data.boleto_url}?format=pdf`,
         '_blank',
       );
 
