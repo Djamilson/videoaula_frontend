@@ -1,11 +1,9 @@
 import React, { useRef, useCallback, useEffect } from 'react';
-import { FaPhoneAlt } from 'react-icons/fa';
 import { FiCheckSquare } from 'react-icons/fi';
 
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
-import Input from '../../../../components/Form/Input';
 import Modal from '../../../../components/Modal';
 import { useLoading } from '../../../../hooks/loading';
 import { useToast } from '../../../../hooks/toast';

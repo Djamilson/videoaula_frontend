@@ -269,22 +269,24 @@ export const ContentDetail = styled.div`
       z-index: 1;
       margin-top: 10px;
       strong {
-        height: 32px;
-        width: 32px;
+        height: 40px;
+        width: 40px;
+
+        padding: 6px;
+        text-align: center;
+
         background: ${colors.colorTitleInPrimary};
         border-radius: 50%;
-        display: inline-block;
         border: 2px solid ${colors.colorSecundaryDark};
         svg {
-          margin-top: 4px;
           width: 22px;
           height: 22px;
           color: ${colors.colorSecundaryDark};
         }
       }
       span {
-        height: 20px;
-        width: 20px;
+        height: 15px;
+        width: 15px;
         background-color: ${colors.colorSecundaryDark};
         border-radius: 50%;
         display: inline-block;
@@ -295,7 +297,7 @@ export const ContentDetail = styled.div`
     hr {
       height: 3px;
       width: 100%;
-      margin: -16px auto;
+      margin: -20px auto;
 
       background-image: linear-gradient(
         to right,
@@ -305,7 +307,7 @@ export const ContentDetail = styled.div`
       );
       background-size: 202% 100%;
       //background-position: 66% 0;
-      background-position: 33% 0;
+      //background-position: 36% 0;
       //background-position: 100% 0;
       border: 0;
     }
@@ -349,6 +351,7 @@ export const ContentDetail = styled.div`
         font-size: 12px;
         color: ${colors.colorTextcomplement};
         font-style: italic;
+        font-weight: bold;
       }
     }
   }
@@ -368,4 +371,100 @@ export const ButtonDetail = styled.div`
   align-items: center;
   justify-content: space-around;
   border: 0;
+
+  button {
+    color: ${colors.colorButtonText};
+    text-decoration: none;
+    border: none;
+    line-height: 2.7;
+    text-align: center;
+    border-radius: 0rem;
+    width: 100%;
+    min-width: 25%;
+    height: 2.7rem;
+    background: ${colors.colorButtonBackground};
+    font: 700 0.8rem Poppins;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+
+    span {
+      display: block;
+      background: none;
+      width: 32px;
+      height: 2.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s;
+      svg {
+        color: ${colors.colorButtonText};
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    strong {
+      flex: 1;
+      text-align: center;
+      color: ${colors.colorButtonText};
+    }
+
+    &:hover {
+      color: ${shade(0.2, `${colors.colorButtonText}`)};
+      background: ${shade(0.2, `${colors.colorButtonBackground}`)};
+      border-radius: 8px;
+    }
+  }
+
+  button + a {
+    margin-left: 20px;
+  }
+
+  a {
+    color: ${colors.colorButtonBackground};
+    text-decoration: none;
+    border: 2px solid ${colors.colorButtonBackground};
+    line-height: 2.5;
+    text-align: center;
+    border-radius: 0rem;
+    width: 100%;
+    min-width: 25%;
+    height: 2.7rem;
+    background: ${colors.colorBoxBase};
+    font: 700 0.8rem Poppins;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+
+    span {
+      display: block;
+      background: none;
+      width: 32px;
+      height: 2.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s;
+      svg {
+        color: ${colors.colorButtonBackground};
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    strong {
+      flex: 1;
+      text-align: center;
+      color: ${colors.colorButtonBackground};
+    }
+
+    &:hover {
+      border-radius: 8px;
+
+      color: ${shade(0.2, `${colors.colorBoxBase}`)};
+    }
+  }
 `;

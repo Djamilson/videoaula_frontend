@@ -26,6 +26,7 @@ export default {
 
   colorInputBackground: '#f8f8fc',
   colorButtonText: '#ffffff',
+  colorButtonBackground: '#E73A33',
   colorBoxBase: '#ffffff',
   colorBoxFooter: '#fafafc',
 

@@ -1,16 +1,14 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { FaAngleDown, FaAngleUp, FaHandshake } from 'react-icons/fa';
 import { FiCheck } from 'react-icons/fi';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Layout from '../_layout';
 import api from '../../../_services/api';
-import Button from '../../../components/Button';
-import { useAuth } from '../../../hooks/auth';
 import { useLoading } from '../../../hooks/loading';
 import { useToast } from '../../../hooks/toast';
 import IOrder from '../../../types/order';
-import { dateFormatted, dateHourFormatted } from '../../../utils';
+import { dateHourFormatted } from '../../../utils';
 import {
   Container,
   Header,
@@ -23,9 +21,8 @@ import {
 
 const Order: React.FC = () => {
   const { addToast } = useToast();
-  //const history = useHistory();
+
   const { addLoading, removeLoading } = useLoading();
-  //const { user, updateUser } = useAuth();
 
   const [orders, setOrders] = useState<IOrder[]>([] as IOrder[]);
 
@@ -36,7 +33,9 @@ const Order: React.FC = () => {
         description: 'Aguarde ...',
       });
 
+      console.log('====>>>');
       const { data } = await api.get(`orders/courses/list`);
+      console.log('data: ', data);
       const newOrders = data.map((order) => {
         return {
           ...order,
@@ -129,7 +128,6 @@ const Order: React.FC = () => {
                         <div>
                           <span />
                           <span />
-                          <span />
                           <strong>
                             <FaHandshake />
                           </strong>
@@ -154,15 +152,8 @@ const Order: React.FC = () => {
                         </div>
                         <div>
                           <strong>
-                            <span>Pedido</span>
-                            <span>Recebido</span>
-                          </strong>
-                          <span>{item.course.created_at}</span>
-                        </div>
-                        <div>
-                          <strong>
-                            <span>Pedido</span>
-                            <span>Recebido</span>
+                            <span>Curso</span>
+                            <span>Liberado</span>
                           </strong>
                           <span>{item.course.created_at}</span>
                         </div>
@@ -170,24 +161,19 @@ const Order: React.FC = () => {
                     </ContentDetail>
 
                     <ButtonDetail>
-                      <Button type="button">
+                      <button type="button">
                         <span>
                           <FiCheck />
                         </span>
-                        <strong>Salvar</strong>
-                      </Button>
-                      <Button type="button">
+                        <strong>Cancelar compra</strong>
+                      </button>
+
+                      <Link to="/signup">
                         <span>
                           <FiCheck />
                         </span>
-                        <strong>Salvar</strong>
-                      </Button>
-                      <Button type="button">
-                        <span>
-                          <FiCheck />
-                        </span>
-                        <strong>Salvar</strong>
-                      </Button>
+                        <strong>Detalhes da compra</strong>
+                      </Link>
                     </ButtonDetail>
                   </>
                 )}
