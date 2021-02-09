@@ -77,9 +77,9 @@ const AddressForm: React.FC = () => {
             loading: true,
             description: 'Aguarde ...',
           });
-          console.log('addressId:', addressId);
+
           const { data } = await api.get(`addresses/users/${addressId}`);
-          console.log('data address: ', data);
+
           formRef.current?.setData(data);
 
           const { city } = data;
@@ -127,7 +127,6 @@ const AddressForm: React.FC = () => {
         });
 
         if (typeof addressId !== typeof undefined) {
-          console.log('MInha nova cidade:', citySelect);
           await api.put('addresses', {
             ...data,
             id: addressId,
@@ -161,7 +160,6 @@ const AddressForm: React.FC = () => {
 
         history.goBack();
       } catch (err) {
-        console.log('erro ', err);
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);

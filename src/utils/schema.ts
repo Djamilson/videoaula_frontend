@@ -158,13 +158,11 @@ export const schemaValidationCep = yup
   .transform(masks.cepByMask.transform)
   .notRequired()
   .test('validateCep', 'Invalid CEP', (value) => {
-    console.log('My cep', value);
     if (!value) {
       return false;
     }
 
     if (value.length === 8) {
-      console.log('My cep ee', value);
       return isValidCEP(value);
     }
 

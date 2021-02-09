@@ -140,7 +140,7 @@ const DisciplineThemes: React.FC = () => {
 
       setComments(dataComment);
     },
-    [setComments, dateFormatted],
+    [setComments],
   );
 
   const handlerLoadMovie = useCallback(

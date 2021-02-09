@@ -33,16 +33,15 @@ const Order: React.FC = () => {
         description: 'Aguarde ...',
       });
 
-      console.log('====>>>');
       const { data } = await api.get(`orders/courses/list`);
-      console.log('data: ', data);
+
       const newOrders = data.map((order) => {
         return {
           ...order,
           course: { ...order.course, detailUpDow: false },
         };
       });
-      console.log('My data:', data);
+
       setOrders(newOrders);
     } catch (err) {
       addToast({
@@ -63,13 +62,9 @@ const Order: React.FC = () => {
 
   const loadDetail = useCallback(
     (idItem: string) => {
-      console.log('CPasou:', idItem);
       setOrders(
         orders.map((order) => {
-          console.log('My order: ', order);
           if (order.id === idItem) {
-            console.log('CPasou: eentrou==>', idItem);
-
             return {
               ...order,
               course: {

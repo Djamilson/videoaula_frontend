@@ -15,7 +15,6 @@ const masker = ({
   const unmask = createPipe(masked, PIPE_TYPE.MASKED, PIPE_TYPE.UNMASKED);
 
   const onChange = (e: any) => {
-    console.log('onclinn=>>>', e);
     const unmasked = unmask(e.target.value);
     const newValue = mask(unmasked);
     e.target.value = newValue;
@@ -222,8 +221,6 @@ export const cardNumberByMask = masker({
     },
   },
   transform: (value: any) => {
-    console.log('value:: 3', value);
-
     if (!value) {
       return value;
     }
@@ -270,11 +267,9 @@ export const cardDateMask = masker({
       },
     },
     format: (date: any) => {
-      console.log('date:: 1', date);
       return format(new Date(date), cardDateFormatClient);
     },
     parse: (dateStr: any) => {
-      console.log('dateStr:: 1', dateStr);
       if (!isValid(parse(dateStr, cardDateFormatClient, new Date())))
         return false;
 
@@ -282,18 +277,14 @@ export const cardDateMask = masker({
     },
   },
   transform: (value: any) => {
-    console.log('value:: 3', value);
-
     if (!value) {
       return value;
     }
     const date = parse(value, cardDateFormatClient, new Date());
-    console.log('data:::: vuou trabalha akiii', date);
-    console.log('Aqui fofa:', format(date, 'MMyy'));
+
     return format(date, cardDateFormatApi);
   },
   maskDefault: (value: any) => {
-    console.log('value:: 5', value);
     return format(parseISO(value), cardDateFormatClient);
   },
 });

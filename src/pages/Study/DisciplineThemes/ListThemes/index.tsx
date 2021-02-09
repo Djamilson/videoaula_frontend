@@ -1,5 +1,5 @@
 import React from 'react';
-import { MdSend, MdVisibility } from 'react-icons/md';
+import { MdSend } from 'react-icons/md';
 
 import { Container, Title, Scroll, Item } from './styles';
 
