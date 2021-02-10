@@ -77,6 +77,11 @@ export const Container = styled.div<ContainerProps>`
     &::placeholder {
       color: ${colors.colorTextInPrimary};
     }
+
+    &:active,
+    &:focus {
+      text-align: left;
+    }
   }
 
   svg {
