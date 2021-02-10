@@ -19,7 +19,7 @@ export const CustomSelect = ({
   options,
   isMulti = false,
 }: CustomSelectProps) => {
-  const onChange = (option: ValueType<Option | Option[]>) => {
+  const onChange = (option: ValueType<Option | Option[] | undefined>) => {
     form.setFieldValue(
       field.name,
       isMulti

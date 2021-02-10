@@ -6,7 +6,7 @@ import Input from '../../../../components/Form/Input';
 import * as masks from '../../../../utils/masks';
 import SelectAsyncCity from './SelectAsyncCity';
 import SelectAsyncState from './SelectAsyncState';
-import { AddressItem } from './styles';
+import { AddressItem, InputNamber } from './styles';
 
 interface IDataOption {
   value: string;
@@ -40,7 +40,7 @@ const Address: React.FC<Props> = ({
             label="Rua/quadra"
           />
 
-          <Input
+          <InputNamber
             id="idNumber"
             name="number"
             icon={MdCheck}
