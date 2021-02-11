@@ -100,7 +100,10 @@ const NewCourse: React.FC = () => {
         const data = new FormData();
 
         data.append('name', data_.name);
-        data.append('price', String(data_.price));
+        data.append(
+          'price',
+          String(masks.currencyMask.unmask(data_.price).replace(',', '.')),
+        );
         data.append('stock', String('1'));
 
         if (typeof courseId !== typeof undefined) {
@@ -115,6 +118,7 @@ const NewCourse: React.FC = () => {
           history.goBack();
         } else {
           data.append('file', data_.file);
+
           await api.post('courses/new', data);
           reset();
 
