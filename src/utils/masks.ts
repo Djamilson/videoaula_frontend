@@ -196,12 +196,10 @@ export const currencyMask = masker({
       },
     },
   },
-  transform: (value: any) => {
-    return Number(currencyMask.unmask(value).replace(',', '.'));
-  },
-  maskDefault: (value: number) => {
-    return currencyMask.mask(value.toFixed(2).replace('.', ','));
-  },
+  transform: (value: any) =>
+    Number(currencyMask.unmask(value).replace(',', '.')),
+  maskDefault: (value: number) =>
+    currencyMask.mask(value.toFixed(2).replace('.', ',')),
 });
 
 export const cardNumberByMask = masker({
