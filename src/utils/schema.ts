@@ -171,7 +171,15 @@ export const schemaValidationCep = yup
 
 export const schemaValidationCurrency = yup
   .number()
-  .transform((_, originalValue) => masks.currencyMask.transform(originalValue));
+  .transform((_, originalValue) => masks.currencyMask.transform(originalValue))
+  .notRequired()
+  .test('validatePrice', 'Valor inválido', (value: any) => {
+    const regex = /^\d+(?:\.\d{0,2})$/;
+
+    if (regex.test(value)) return true;
+
+    return false;
+  });
 
 export const schemaValidationPhone = yup
   .string()

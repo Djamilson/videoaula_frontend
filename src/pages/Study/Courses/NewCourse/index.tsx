@@ -6,11 +6,10 @@ import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
 import Layout from '../../../_layouts/auth';
-import { Form } from '../../../_layouts/auth/styles';
+import { Footer, Form } from '../../../_layouts/auth/styles';
 import {
   Header,
   GroupButton,
-  ScheduleItem,
   GobackButton,
 } from '../../../_layouts/auth/styles';
 import api from '../../../../_services/api';
@@ -20,6 +19,9 @@ import Input from '../../../../components/Form/Input';
 import { useLoading } from '../../../../hooks/loading';
 import { useToast } from '../../../../hooks/toast';
 import getValidationErros from '../../../../utils/getValidationErros';
+import * as masks from '../../../../utils/masks';
+import { schemaValidationCurrency } from '../../../../utils/schema';
+import { InputPrice } from './styles';
 
 interface ParamTypes {
   courseId: string;
@@ -88,7 +90,7 @@ const NewCourse: React.FC = () => {
 
         const schema = Yup.object().shape({
           name: Yup.string().required('Nome obrigatório'),
-          price: Yup.string().required('Preço obrigatório'),
+          price: schemaValidationCurrency,
         });
 
         await schema.validate(data_, {
@@ -166,21 +168,16 @@ const NewCourse: React.FC = () => {
 
         <fieldset>
           <legend>Dados do curso</legend>
-          <ScheduleItem>
+          <Input placeholder="Curso" name="name" icon={FiCheck} label="Curso" />
+          <InputPrice>
             <Input
-              placeholder="Curso"
-              name="name"
-              icon={FiCheck}
-              label="Curso"
-            />
-
-            <Input
-              placeholder="Valor R$"
+              placeholder="R$"
               name="price"
               icon={FiCheck}
               label="Valor R$"
+              onChange={masks.currencyMask.onChange}
             />
-          </ScheduleItem>
+          </InputPrice>
         </fieldset>
         {!image?.preview && (
           <fieldset>
@@ -188,10 +185,8 @@ const NewCourse: React.FC = () => {
             <NewFile name="file" />
           </fieldset>
         )}
-        <footer>
-          <p />
-        </footer>
       </Form>
+      <Footer />
     </Layout>
   );
 };
