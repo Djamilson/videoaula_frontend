@@ -10,7 +10,7 @@ export const AddressItem = styled.div`
   }
 `;
 
-export const InputNamber = styled(Input)`
+export const InputNumber = styled(Input)`
   @media (min-width: 700px) {
     width: 100%;
   }
