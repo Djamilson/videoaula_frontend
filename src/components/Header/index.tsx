@@ -2,10 +2,10 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { FiPower } from 'react-icons/fi';
 import { MdAccountCircle } from 'react-icons/md';
 
-import logoImg from '../../../assets/images/logo.svg';
-import { useAuth } from '../../../hooks/auth';
-import ButtonMenu from './ButtonMenu';
-import MenuResponsive from './MenuResponsive';
+import logoImg from '../../assets/images/logo.svg';
+import { useAuth } from '../../hooks/auth';
+import ButtonMenu from './MenuResponsive/ButtonMenu';
+import MenuResponsive from './MenuResponsive/Modal';
 import Navigation from './Navigation';
 import {
   Container,
@@ -17,11 +17,6 @@ import {
   Box,
 } from './styles';
 
-interface IMenu {
-  label: string;
-  path: string;
-  selected: boolean;
-}
 const Header: React.FC = () => {
   const { signOut, user } = useAuth();
   const nameUser = user?.person.name.split(' ')[0];
@@ -30,13 +25,11 @@ const Header: React.FC = () => {
 
   const [sticky, setSticky] = useState({ isSticky: false, offset: 0 });
   const headerRef = useRef<HTMLDivElement>(null);
-  const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const handleToggleMenu = useCallback(() => {
-    setToggleMenu(!toggleMenu);
     setModalOpen(!modalOpen);
-  }, [setToggleMenu, toggleMenu, modalOpen, setModalOpen]);
+  }, [modalOpen, setModalOpen]);
 
   useEffect(() => {
     if (!headerRef.current) return;
@@ -56,10 +49,6 @@ const Header: React.FC = () => {
     };
   }, [setSticky]);
 
-  function toggleModal(): void {
-    setModalOpen(!modalOpen);
-  }
-
   return (
     <Container ref={headerRef} visible={sticky.isSticky}>
       <MenuResponsive
@@ -67,14 +56,13 @@ const Header: React.FC = () => {
         handleToggleMenu={handleToggleMenu}
         menus={menus}
         isOpen={modalOpen}
-        setIsOpen={toggleModal}
       />
       <Content>
         <Box>
           <NavLink to="/dashboard">
             <img src={logoImg} alt="Proffy" />
           </NavLink>
-          <ButtonMenu handleClick={handleToggleMenu} isActive={toggleMenu} />
+          <ButtonMenu handleClick={handleToggleMenu} isActive={modalOpen} />
           <Navigation handleToggleMenu={handleToggleMenu} menus={menus} />
         </Box>
         <Profile>

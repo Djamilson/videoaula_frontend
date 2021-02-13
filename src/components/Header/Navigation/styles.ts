@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import { colors } from '../../../../styles';
+import { colors } from '../../../styles';
 
 export const Navigation = styled.ul`
   border: 0;

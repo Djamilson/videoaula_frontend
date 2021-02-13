@@ -21,7 +21,13 @@ const Home: React.FC = () => {
       <Box>
         <ContainerLogo>
           <img src={logoImg} alt="Proffy" />
-          <h2>Sua plataforma de estudos online.</h2>
+          <span>
+            <h2>
+              Sua plataforma de <br />
+            </h2>
+
+            <h2>estudos online.</h2>
+          </span>
         </ContainerLogo>
         <img src={landingImg} alt="heroimage" />
       </Box>

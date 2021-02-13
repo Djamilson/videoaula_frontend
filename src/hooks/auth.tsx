@@ -6,7 +6,7 @@ import {
   roleStudent,
   roleTeacher,
   roleUser,
-} from '../components/Headers/Header/Menu';
+} from '../components/Header/Menu';
 import IMenu from '../types/menu';
 
 interface Person {

@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { colors } from '../../../../styles';
-
 interface IProps {
   visible: boolean;
 }

@@ -3,34 +3,7 @@ import { Link } from 'react-router-dom';
 
 import styled, { keyframes } from 'styled-components';
 
-import { colors } from '../../../../../styles';
-
-interface Props {
-  visible: boolean;
-}
-
-const fadeIn = keyframes`
-  0% {
-    opacity: 0;
-    transform: translateX(80px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
-
-const fadeOut = keyframes`
-0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-100px);
-  }
-
-`;
+import { colors } from '../../../../styles';
 
 export const Container = styled.ul`
   z-index: 11;

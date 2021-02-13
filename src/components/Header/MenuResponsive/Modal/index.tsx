@@ -1,9 +1,9 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef } from 'react';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { useSpring, animated } from 'react-spring';
 
-import { colors } from '../../../../../styles';
-import IMenu from '../../../../../types/menu';
+import { colors } from '../../../../styles';
+import IMenu from '../../../../types/menu';
 import {
   Background,
   Container,
@@ -11,21 +11,17 @@ import {
   NavigationLink,
   Badge,
   ModalWrapper,
-  CloseModalButton,
 } from './styles';
 
-interface IPropsModal {
-  showModal: boolean;
-  setShowModal: (item: boolean) => void;
-
+interface IProps {
   handleToggleMenu(): void;
   handleSignOut(): void;
   menus: IMenu[];
+  isOpen: boolean;
 }
 
-const Modal: React.FC<IPropsModal> = ({
-  showModal,
-  setShowModal,
+const Modal: React.FC<IProps> = ({
+  isOpen,
   handleToggleMenu,
   menus,
   handleSignOut,
@@ -36,35 +32,14 @@ const Modal: React.FC<IPropsModal> = ({
     config: {
       duration: 250,
     },
-    opacity: showModal ? 1 : 0,
-    transform: showModal ? `translateY(0%)` : `translateY(-100%)`,
+    opacity: isOpen ? 1 : 0,
+    transform: isOpen ? `translateY(0%)` : `translateY(-100%)`,
   });
-  /*
-  const closeModal = (e: any) => {
-    if (modalRef.current === e.target) {
-      setShowModal(false);
-    }
-  };
-
-  const keyPress = useCallback(
-    (e) => {
-      if (e.key === 'Escape' && showModal) {
-        setShowModal(false);
-        console.log('I pressed');
-      }
-    },
-    [setShowModal, showModal],
-  );
-
-  useEffect(() => {
-    document.addEventListener('keydown', keyPress);
-    return () => document.removeEventListener('keydown', keyPress);
-  }, [keyPress]);*/
 
   return (
-    <Background visible={showModal} onClick={handleToggleMenu} ref={modalRef}>
+    <Background visible={isOpen} onClick={handleToggleMenu} ref={modalRef}>
       <animated.div style={animation}>
-        <ModalWrapper showModal={showModal}>
+        <ModalWrapper showModal={isOpen}>
           <Container>
             {menus?.map((menu: IMenu) => {
               return (

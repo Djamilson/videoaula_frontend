@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import styled, { keyframes } from 'styled-components';
 
-import { colors } from '../../../styles';
+import { colors } from '../../styles';
 
 interface Props {
   visible: boolean;

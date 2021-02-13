@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import IMenu from '../../../../types/menu';
 
+import IMenu from '../../../types/menu';
 import { NavigationLink, Navigation, MenuLI } from './styles';
 
 interface IProps {
