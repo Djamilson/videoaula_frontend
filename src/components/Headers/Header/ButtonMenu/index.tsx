@@ -8,7 +8,11 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const ButtonMenu: React.FC<ButtonProps> = ({ handleClick, isActive }) => (
-  <S.ButtonHamburger onClick={handleClick} className={isActive ? 'active' : ''}>
+  <S.ButtonHamburger
+    visible={!isActive}
+    onClick={handleClick}
+    className={isActive ? 'active' : ''}
+  >
     <span />
   </S.ButtonHamburger>
 );

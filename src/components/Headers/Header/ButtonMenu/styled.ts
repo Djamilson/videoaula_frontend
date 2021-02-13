@@ -1,16 +1,24 @@
 import styled from 'styled-components';
 
-export const ButtonHamburger = styled.button`
+import { colors } from '../../../../styles';
+
+interface IProps {
+  visible: boolean;
+}
+export const ButtonHamburger = styled.button<IProps>`
   width: 50px;
   height: 50px;
-  border-radius: 3px;
-  border: none;
+  border: 0;
+  border-radius: ${(props) => (props.visible === false ? '50%' : '3px')};
+
   position: absolute;
-  background: transparent;
+  background: ${(props) =>
+    props.visible === false ? '#d4c2ff' : 'transparent'};
+
   display: inline-block;
 
-  top: var(--space-sm-top);
-  left: var(--space-sm);
+  top: ${(props) => (props.visible === false ? '3.6rem' : '2.6rem')};
+  left: ${(props) => (props.visible === false ? '280px' : '1rem')};
 
   @media (min-width: 974px) {
     display: none;
@@ -35,15 +43,16 @@ export const ButtonHamburger = styled.button`
 
   span {
     background: var(--text-body-bg);
-    border-radius: 10px;
+
     display: inline-block;
     height: 3px;
     width: 70%;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: ${(props) => (props.visible === false ? '25px' : '50%')};
+    left: ${(props) => (props.visible === false ? '25px' : '1rem')};
 
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
     &:before,
     &:after {
       content: '';
