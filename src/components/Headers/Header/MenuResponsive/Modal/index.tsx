@@ -39,7 +39,7 @@ const Modal: React.FC<IPropsModal> = ({
     opacity: showModal ? 1 : 0,
     transform: showModal ? `translateY(0%)` : `translateY(-100%)`,
   });
-
+  /*
   const closeModal = (e: any) => {
     if (modalRef.current === e.target) {
       setShowModal(false);
@@ -59,10 +59,10 @@ const Modal: React.FC<IPropsModal> = ({
   useEffect(() => {
     document.addEventListener('keydown', keyPress);
     return () => document.removeEventListener('keydown', keyPress);
-  }, [keyPress]);
+  }, [keyPress]);*/
 
   return (
-    <Background visible={showModal} onClick={closeModal} ref={modalRef}>
+    <Background visible={showModal} onClick={handleToggleMenu} ref={modalRef}>
       <animated.div style={animation}>
         <ModalWrapper showModal={showModal}>
           <Container>

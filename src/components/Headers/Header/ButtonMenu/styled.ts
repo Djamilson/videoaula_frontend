@@ -8,16 +8,15 @@ interface IProps {
 export const ButtonHamburger = styled.button<IProps>`
   width: 50px;
   height: 50px;
-  border: 0;
   border-radius: ${(props) => (props.visible === false ? '50%' : '3px')};
-
+  border: none;
   position: absolute;
   background: ${(props) =>
     props.visible === false ? '#d4c2ff' : 'transparent'};
 
   display: inline-block;
 
-  top: ${(props) => (props.visible === false ? '3.6rem' : '2.6rem')};
+  top: ${(props) => (props.visible === false ? '2.4rem' : '2.6rem')};
   left: ${(props) => (props.visible === false ? '280px' : '1rem')};
 
   @media (min-width: 974px) {
@@ -26,6 +25,7 @@ export const ButtonHamburger = styled.button<IProps>`
 
   &.active {
     span {
+      border: none;
       background: transparent;
       &:before,
       &:after {
@@ -43,10 +43,11 @@ export const ButtonHamburger = styled.button<IProps>`
 
   span {
     background: var(--text-body-bg);
+    border: none;
 
     display: inline-block;
     height: 3px;
-    width: 70%;
+    width: ${(props) => (props.visible === false ? '40%' : '70%')};
     position: absolute;
     top: ${(props) => (props.visible === false ? '25px' : '50%')};
     left: ${(props) => (props.visible === false ? '25px' : '1rem')};

@@ -12,19 +12,20 @@ const fadeIn = keyframes`
   0% {
     opacity: 0;
     background: ${colors.colorPrimary};
+      transform: translateY(-142px);
      }
   100% {
     opacity: 1;
-    transform: translateY(0);
     background: ${colors.colorBoxBase};
+    transform: translateY(0px);
   }
 `;
 
 export const Container = styled.div<Props>`
-  position: sticky;
+  position: fixed;
   transition: all 0.5s ease;
   animation: ${(props) => props.visible && fadeIn} 500ms linear;
-
+  width: 100%;
   padding: 0 3rem;
   padding-top: ${(props) => (props.visible ? '1rem' : '3rem')};
   padding-bottom: ${(props) => (props.visible ? '2rem' : '5rem')};

@@ -116,7 +116,7 @@ export const Background = styled.div<IVisible>`
   margin-left: -2.8rem;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.2);
   position: fixed;
   display: ${(props) => (props.visible ? 'flex' : 'none')};
 
