@@ -1,9 +1,11 @@
-import React, { useState, useMemo, useRef, useEffect } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { FiPower } from 'react-icons/fi';
 import { MdAccountCircle } from 'react-icons/md';
 
 import logoImg from '../../../assets/images/logo.svg';
 import { useAuth } from '../../../hooks/auth';
+import ButtonMenu from './ButtonMenu';
+import MenuResponsive from './MenuResponsive';
 import Navigation from './Navigation';
 import {
   Container,
@@ -12,30 +14,29 @@ import {
   Profile,
   ProfileLink,
   Badge,
-  NavMenu,
+  Box,
 } from './styles';
 
+interface IMenu {
+  label: string;
+  path: string;
+  selected: boolean;
+}
 const Header: React.FC = () => {
   const { signOut, user } = useAuth();
   const nameUser = user?.person.name.split(' ')[0];
   const url_avatar = user?.person.avatar_url;
+  const { menus } = user;
 
   const [sticky, setSticky] = useState({ isSticky: false, offset: 0 });
   const headerRef = useRef<HTMLDivElement>(null);
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-  function handleToggleMenu() {
+  const handleToggleMenu = useCallback(() => {
     setToggleMenu(!toggleMenu);
-  }
-  const [study, setStudy] = useState<boolean>(true);
-
-  useMemo(() => {
-    const newStudy = user.user_groups.filter((group) =>
-      group.name.localeCompare('role-students'),
-    );
-
-    if (newStudy.length > 0) setStudy(false);
-  }, [user]);
+    setModalOpen(!modalOpen);
+  }, [setToggleMenu, toggleMenu, modalOpen, setModalOpen]);
 
   useEffect(() => {
     if (!headerRef.current) return;
@@ -55,24 +56,32 @@ const Header: React.FC = () => {
     };
   }, [setSticky]);
 
+  function toggleModal(): void {
+    setModalOpen(!modalOpen);
+  }
+
   return (
     <Container ref={headerRef} visible={sticky.isSticky}>
+      <MenuResponsive
+        handleSignOut={signOut}
+        handleToggleMenu={handleToggleMenu}
+        menus={menus}
+        isOpen={modalOpen}
+        setIsOpen={toggleModal}
+      />
       <Content>
-        <>
+        <Box>
           <NavLink to="/dashboard">
-            <img src={logoImg} alt="Ecommecer" />
+            <img src={logoImg} alt="Proffy" />
           </NavLink>
-
-          <NavMenu>
-            <Navigation handleToggleMenu={handleToggleMenu} typeUser={study} />
-          </NavMenu>
-        </>
-
+          <ButtonMenu handleClick={handleToggleMenu} isActive={toggleMenu} />
+          <Navigation handleToggleMenu={handleToggleMenu} menus={menus} />
+        </Box>
         <Profile>
           <ProfileLink to="/profile">
             <div>
               <strong>Bem-vindo,</strong>
-              <span> {nameUser}</span>
+              <span>{nameUser}</span>
             </div>
             {url_avatar !== null ? (
               <img src={url_avatar} alt={nameUser} />
@@ -82,10 +91,10 @@ const Header: React.FC = () => {
           </ProfileLink>
 
           <Badge type="button" onClick={signOut}>
-            <div>
-              <span>Sair</span>
-            </div>
-            <FiPower size={32} color="#FFF" />
+            <strong>Sair</strong>
+            <span>
+              <FiPower />
+            </span>
           </Badge>
         </Profile>
       </Content>

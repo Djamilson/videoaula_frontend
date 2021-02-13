@@ -13,9 +13,9 @@ import {
   Header,
   ScheduleItem,
   Form,
+  Footer,
 } from '../../../_layouts/auth/styles';
 import api from '../../../../_services/api';
-import warningIcon from '../../../../assets/images/icons/warning.svg';
 import Button from '../../../../components/Button';
 import Select from '../../../../components/Form/Select_';
 import { useLoading } from '../../../../hooks/loading';
@@ -177,14 +177,8 @@ const AddDisciplines: React.FC = () => {
           </span>
           <strong>Adicionar</strong>
         </Button>
-
-        <footer>
-          <p>
-            <img src={warningIcon} alt="Aviso importante" />
-            Disciplinas! <br />
-          </p>
-        </footer>
       </Form>
+      <Footer />
     </Layout>
   );
 };

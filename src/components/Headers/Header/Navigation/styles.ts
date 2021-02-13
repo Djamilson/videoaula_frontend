@@ -5,28 +5,20 @@ import styled from 'styled-components';
 import { colors } from '../../../../styles';
 
 export const Navigation = styled.ul`
+  border: 0;
   display: none;
   flex-direction: column;
-  margin-top: var(--space-sm) var(--space-sm);
-
   &.active {
     display: flex;
   }
 
-  @media only screen and (min-width: 974px) {
+  li + li {
+    margin-left: 20px;
+  }
+  @media (min-width: 1024px) {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-end;
-  }
-
-  @media only screen and (min-width: 1040px) {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  a + a {
-    margin-left: 5px;
   }
 `;
 
@@ -35,13 +27,15 @@ interface Props {
 }
 
 export const MenuLI = styled.li`
-  margin-left: 0px;
-  padding: 3px;
-  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  border: none;
   background: none;
   list-style-type: none;
   max-width: 220px;
   transition: transform 0.3s ease-in-out;
+
+  height: 2.6rem;
 
   strong {
     display: block;
@@ -59,7 +53,6 @@ export const MenuLI = styled.li`
 
     &:after {
       opacity: 1;
-      bottom: -10px;
       width: 100%;
     }
   }
@@ -74,28 +67,25 @@ export const NavigationLink = styled(Link)<Props>`
   position: relative;
   font-size: 16px;
   font-weight: bold;
-  padding: 0 var(--space-sm);
-  margin-bottom: var(--space-sm);
   text-align: center;
-
   background: none;
 
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
-  text-decoration: none;
   transition: background-color 0.2s;
+  text-decoration: none;
 
   span {
     display: block;
     background: rgba(0, 0, 0, 0);
     width: 22px;
-    height: 2.8rem;
     border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background-color 0.2s;
+
     svg {
       color: #fff;
       width: 20px;
@@ -109,7 +99,6 @@ export const NavigationLink = styled(Link)<Props>`
 
     &:after {
       opacity: 1;
-      bottom: -10px;
       width: 100%;
     }
   }

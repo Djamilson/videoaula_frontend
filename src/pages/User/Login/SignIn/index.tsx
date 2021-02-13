@@ -29,7 +29,7 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
 
-  const { signIn } = useAuth();
+  const { signIn, loadMenus, updateUser } = useAuth();
   const { addToast } = useToast();
   const { addLoading, removeLoading } = useLoading();
 
@@ -53,10 +53,12 @@ const SignIn: React.FC = () => {
           description: 'Aguarde ...',
         });
 
-        await signIn({
+        const user = await signIn({
           email: data.email,
           password: data.password,
         });
+
+        updateUser({ ...user, menus: loadMenus(user.user_groups) });
 
         history.push('/dashboard');
       } catch (err) {
@@ -75,7 +77,15 @@ const SignIn: React.FC = () => {
         removeLoading();
       }
     },
-    [signIn, addToast, removeLoading, addLoading, history],
+    [
+      signIn,
+      addToast,
+      removeLoading,
+      addLoading,
+      history,
+      updateUser,
+      loadMenus,
+    ],
   );
 
   return (

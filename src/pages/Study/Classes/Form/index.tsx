@@ -12,10 +12,13 @@ import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
 import Layout from '../../../_layouts/auth';
-import { Form, ScheduleItem } from '../../../_layouts/auth/styles';
-import { Header } from '../../../_layouts/auth/styles';
+import {
+  Form,
+  ScheduleItem,
+  Header,
+  Footer,
+} from '../../../_layouts/auth/styles';
 import api from '../../../../_services/api';
-import warningIcon from '../../../../assets/images/icons/warning.svg';
 import Button from '../../../../components/Button';
 import Input from '../../../../components/Form/Input';
 import SelectCourse from '../../../../components/Form/Select';
@@ -150,6 +153,7 @@ const FormClass: React.FC = () => {
               style={{
                 border: 0,
                 boxShadow: 'none',
+                zIndex: 0,
               }}
             />
 
@@ -192,14 +196,8 @@ const FormClass: React.FC = () => {
             <Input placeholder="Link do vídeo" name="movie" icon={FiCheck} />
           </ScheduleItem>
         </fieldset>
-
-        <footer>
-          <p>
-            <img src={warningIcon} alt="Aviso importante" />
-            Aulas adicionadas! <br />
-          </p>
-        </footer>
       </Form>
+      <Footer />
     </Layout>
   );
 };

@@ -9,10 +9,10 @@ export const ButtonHamburger = styled.button`
   background: transparent;
   display: inline-block;
 
-  top: var(--space-sm);
+  top: var(--space-sm-top);
   left: var(--space-sm);
 
-  @media only screen and (min-width: 974px) {
+  @media (min-width: 974px) {
     display: none;
   }
 

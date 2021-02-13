@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import styled, { keyframes } from 'styled-components';
 
-import { colors } from '../../../../styles';
+import { colors } from '../../../../../styles';
 
 interface Props {
   visible: boolean;
@@ -35,19 +35,25 @@ export const Container = styled.ul`
   z-index: 11;
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 2px;
+  grid-gap: 0px;
   margin-top: 20px;
+
+  padding: 10px 40px;
 `;
 
 export const OrderLI = styled.li`
-  margin-left: 10px;
-  border-radius: 4px;
-  background: #fff;
-  max-width: 220px;
+  border: 0;
+  border-radius: 0px;
+  height: 40px;
+  background: none;
+  width: 220px;
+  list-style-type: none;
   transition: transform 0.3s ease-in-out;
-  padding: 8px;
+  border-bottom: 1px solid ${colors.colorLineInWhite};
+  margin-bottom: 10px;
+
   span {
-    border: 0;
+    border: none;
     display: block;
     color: #7159c1;
     font-size: 16px;
@@ -79,7 +85,6 @@ export const NavigationLink = styled(Link)<IProps>`
       ? `${colors.colorTextInWhite}`
       : `${colors.colorButtonText}`};
   text-decoration: none;
-  position: relative;
   font-weight: bold;
   text-align: center;
 

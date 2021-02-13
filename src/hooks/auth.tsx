@@ -1,6 +1,13 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
 
 import api from '../_services/api';
+import {
+  roleAdmin,
+  roleStudent,
+  roleTeacher,
+  roleUser,
+} from '../components/Headers/Header/Menu';
+import IMenu from '../types/menu';
 
 interface Person {
   id: string;
@@ -23,6 +30,7 @@ interface User {
   is_verified: boolean;
   user_groups: IGroup[];
   person: Person;
+  menus: IMenu[];
 }
 
 interface AuthState {
@@ -37,9 +45,10 @@ interface SignInCredentials {
 
 interface AuthContextData {
   user: User;
-  signIn(credentials: SignInCredentials): Promise<void>;
+  signIn(credentials: SignInCredentials): Promise<User>;
   signOut(): void;
   updateUser(user: User): void;
+  loadMenus(groups: IGroup[]): IMenu[];
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -61,6 +70,53 @@ const AuthProvider: React.FC = ({ children }) => {
     return {} as AuthState;
   });
 
+  const loadMenus = useCallback((groups) => {
+    const myRetorn = Array<{
+      selected: boolean;
+      label: string;
+      path: string;
+    }>();
+
+    groups.forEach((group) => {
+      if (group.name === 'role-admin') {
+        myRetorn.push(
+          ...roleAdmin.map((menuAdmin) => {
+            return { ...menuAdmin, selected: false };
+          }),
+        );
+      }
+      if (group.name === 'role-student') {
+        myRetorn.push(
+          ...roleStudent.map((menuStudent) => {
+            return { ...menuStudent, selected: false };
+          }),
+        );
+      }
+
+      if (group.name === 'role-user') {
+        myRetorn.push(
+          ...roleUser.map((menuUser) => {
+            return { ...menuUser, selected: false };
+          }),
+        );
+      }
+
+      if (group.name === 'role-teacher') {
+        myRetorn.push(
+          ...roleTeacher.map((menuTeacher) => {
+            return { ...menuTeacher, selected: false };
+          }),
+        );
+      }
+    });
+    return myRetorn.filter(
+      (power, toThe, yellowVests) =>
+        yellowVests
+          .map((updateDemocracy) => updateDemocracy.label)
+          .indexOf(power.label) === toThe,
+    );
+  }, []);
+
   const signIn = useCallback(async ({ email, password }) => {
     const res = await api.post('sessions', { email, password });
 
@@ -72,6 +128,7 @@ const AuthProvider: React.FC = ({ children }) => {
     api.defaults.headers.authorization = `Bearer ${token}`;
 
     setData({ token, user });
+    return user;
   }, []);
 
   const signOut = useCallback(() => {
@@ -95,7 +152,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user: data.user, signIn, signOut, updateUser }}
+      value={{ user: data.user, signIn, signOut, updateUser, loadMenus }}
     >
       {children}
     </AuthContext.Provider>

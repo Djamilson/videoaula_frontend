@@ -4,9 +4,10 @@ import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 import Layout from '../../../../_layouts/auth';
+import { GobackButton } from '../../../../_layouts/auth/styles';
 import api from '../../../../../_services/api';
 import { useLoading } from '../../../../../hooks/loading';
-import { Man, NavButton, GobackButton } from './styles';
+import { Container, MyHeader, MyFooter } from './styles';
 import Table from './Table';
 
 interface ParamTypes {
@@ -68,22 +69,20 @@ const AddDisciplines: React.FC = () => {
 
   return (
     <Layout>
-      <Man>
-        <NavButton>
-          <header>
-            <h1>{course.name}</h1>
-            <section>
-              <GobackButton type="button" onClick={() => goBack()}>
-                <span>
-                  <FiArrowLeft />
-                </span>
-                <strong>Voltar</strong>
-              </GobackButton>
-            </section>
-          </header>
-        </NavButton>
+      <Container>
+        <MyHeader>
+          <GobackButton type="button" onClick={() => goBack()}>
+            <span>
+              <FiArrowLeft />
+            </span>
+            <strong>Voltar</strong>
+          </GobackButton>
+
+          <h2>{course.name}</h2>
+        </MyHeader>
         <Table coursesDisciplines={coursesDisciplines} />
-      </Man>
+        <MyFooter />
+      </Container>
     </Layout>
   );
 };

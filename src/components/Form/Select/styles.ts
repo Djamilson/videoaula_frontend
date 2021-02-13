@@ -6,7 +6,7 @@ import Tooltip from '../../Tooltip';
 export const SelectBlock = styled.div`
   display: flex;
   flex-direction: column;
-  z-index: 9;
+  z-index: 0;
 
   && {
     margin-top: 1.4rem;

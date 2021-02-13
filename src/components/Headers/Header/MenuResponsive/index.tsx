@@ -2,48 +2,33 @@ import React from 'react';
 import { FaSignOutAlt } from 'react-icons/fa';
 
 import { colors } from '../../../../styles';
+import IMenu from '../../../../types/menu';
+import Modal from './Modal';
 import { Container, NavigationLink, OrderLI, Badge } from './styles';
 
 interface IProps {
-  isActive: boolean;
   handleToggleMenu(): void;
   handleSignOut(): void;
+  menus: IMenu[];
+  isOpen: boolean;
+  setIsOpen: () => void;
 }
 
 const MenuResponsive: React.FC<IProps> = ({
-  isActive,
   handleToggleMenu,
   handleSignOut,
+  menus,
+  isOpen,
+  setIsOpen,
 }) => {
   return (
-    <Container visible={isActive} className={isActive ? 'active' : ''}>
-      <ul>
-        <OrderLI>
-          <NavigationLink
-            to="/home"
-            aria-label="Home"
-            onClick={handleToggleMenu}
-          >
-            Home
-          </NavigationLink>
-        </OrderLI>
-
-        <OrderLI>
-          <NavigationLink
-            to="/profile"
-            aria-label="Meu perfil"
-            onClick={() => handleToggleMenu()}
-          >
-            MEU PERFIL
-          </NavigationLink>
-        </OrderLI>
-        <OrderLI>
-          <Badge onClick={handleSignOut} title="Sair">
-            <FaSignOutAlt color={colors.third} size={28} />
-          </Badge>
-        </OrderLI>
-      </ul>
-    </Container>
+    <Modal
+      handleToggleMenu={handleToggleMenu}
+      menus={menus}
+      handleSignOut={handleSignOut}
+      showModal={isOpen}
+      setShowModal={setIsOpen}
+    />
   );
 };
 
