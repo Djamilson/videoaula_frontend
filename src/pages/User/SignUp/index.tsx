@@ -48,7 +48,7 @@ const SignUp: React.FC = () => {
           abortEarly: false,
         });
 
-        await api.post('/users', { ...data, nameGroup: 'role-students' });
+        await api.post('/users', { ...data, nameGroup: 'role-student' });
         history.push('/signin');
 
         addToast({

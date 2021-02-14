@@ -33,6 +33,10 @@ export const Container = styled.div<Props>`
   background: ${colors.colorPrimary};
   border: 0;
   z-index: 5;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.6);
+  -o-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.6);
 `;
 export const Box = styled.div`
   display: flex;
@@ -49,9 +53,10 @@ export const Content = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
+  border: 1px solid #f00;
 
   @media (max-width: 974px) {
-    margin: 0 100px 0 40px;
+    margin: 0 10px;
   }
 
   @media (min-width: 425px) {
