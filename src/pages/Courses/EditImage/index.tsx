@@ -7,13 +7,13 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
-import Layout from '../../../_layouts/auth';
-import api from '../../../../_services/api';
-import warningIcon from '../../../../assets/images/icons/warning.svg';
-import NewFile from '../../../../components/Form/File';
-import { useLoading } from '../../../../hooks/loading';
-import { useToast } from '../../../../hooks/toast';
-import getValidationErros from '../../../../utils/getValidationErros';
+import Layout from '../../_layouts/auth';
+import api from '../../../_services/api';
+import warningIcon from '../../../assets/images/icons/warning.svg';
+import NewFile from '../../../components/Form/File';
+import { useLoading } from '../../../hooks/loading';
+import { useToast } from '../../../hooks/toast';
+import getValidationErros from '../../../utils/getValidationErros';
 import { ContainerForm, GobackButton, SaveButton } from './styles';
 
 interface ParamTypes {

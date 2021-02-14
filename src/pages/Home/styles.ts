@@ -3,34 +3,22 @@ import { Link } from 'react-router-dom';
 import { shade } from 'polished';
 import styled from 'styled-components';
 
+import landingImg from '../../assets/images/landing.svg';
 import { colors } from '../../styles';
 
-export const Container = styled.div`
-  width: 100vw;
-  height: 200vh;
-  margin-bottom: 1rem;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  overflow-x: hidden;
-  overflow-y: hidden;
-
-  border: 0;
-  padding-bottom: 2rem;
-  margin-top: -2rem;
-
-  @media (min-width: 1024px) {
-    height: 100vh;
-  }
+export const LandingImg = styled.div`
+  flex: 1;
+  background: url(${landingImg}) no-repeat center;
+  background-size: cover;
 `;
 
 export const Box = styled.div`
-  width: 100vw;
-  height: 90vh;
-  margin-top: var(--space-lgs);
-  margin-bottom: 4rem;
+  width: 100%;
+  max-width: 1440px;
+  height: 140vh;
+  margin-top: 0;
+  margin-bottom: 0rem;
+  padding: 0 3rem;
 
   display: flex;
   align-items: center;
@@ -38,22 +26,20 @@ export const Box = styled.div`
   flex-direction: column;
 
   @media (min-width: 1024px) {
-    margin-top: 2rem;
     flex-direction: row;
     padding: 3rem;
     margin-top: 0rem;
+    height: 70vh;
   }
 
-  border: 0px;
   color: ${colors.colorTextInPrimary};
   background: ${colors.colorPrimary};
 
   img {
-    width: 33rem;
-    height: 18rem;
-    margin-left: 2rem;
-
+    width: 100%;
+    background-size: cover;
     @media (min-width: 1024px) {
+      width: 33rem;
       margin-top: 4rem;
       margin-bottom: 2rem;
       border: 0;
@@ -68,8 +54,9 @@ export const ContainerLogo = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border: 0;
-  margin-top: var(--space-lm);
+  margin-top: 10rem;
+
+  width: 100%;
 
   @media (min-width: 1024px) {
     margin-top: 5rem;
@@ -77,7 +64,8 @@ export const ContainerLogo = styled.div`
   }
 
   > img {
-    height: 4rem;
+    margin-top: -10rem;
+    height: 5rem;
   }
 
   span {
@@ -92,7 +80,7 @@ export const ContainerLogo = styled.div`
 
       @media (min-width: 1024px) {
         text-align: center;
-        font-size: 1.2rem;
+        font-size: 1.6rem;
       }
 
       @media (min-width: 768px) {
@@ -105,15 +93,20 @@ export const ContainerLogo = styled.div`
     }
     h2 + h2 {
       margin-left: 6rem;
+      @media (min-width: 1024px) {
+        margin-left: 0.5rem;
+      }
     }
 
     h2:first-child {
       margin-top: 2rem;
+      @media (min-width: 1024px) {
+        margin-top: 0rem;
+      }
     }
 
     @media (min-width: 1024px) {
-      text-align: center;
-      font-size: 1.2rem;
+      flex-direction: row;
     }
   }
 
@@ -130,43 +123,45 @@ export const ContainerLogo = styled.div`
 
 export const Footer = styled.div`
   width: 100%;
-  height: 150vh;
+
+  max-width: 1440px;
+  height: 80vh;
   font-weight: 500;
   font-size: 1.6rem;
+  border: 0;
 
   flex-direction: column;
   align-items: center;
   display: flex;
-  justify-content: flex-start;
-  margin-top: 5rem;
-  border: 0;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+
   @media (min-width: 1024px) {
     flex-direction: row;
-    height: 100vh;
+    height: 50vh;
     justify-content: center;
-    margin-top: -3rem;
-  }
 
-  @media (max-width: 768px) {
-    margin-top: 8rem;
-    margin-right: 5rem;
-    justify-content: center;
+    margin-top: 0rem;
   }
 
   section {
     display: flex;
     align-items: center;
     flex-direction: column;
+    align-items: center;
+    border: 0;
 
     h2 {
       font-weight: 500;
       font-size: 0.9rem;
       color: ${colors.colorTextTitle};
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.1rem;
+
       @media (min-width: 1024px) {
         text-align: initial;
         font-size: 1.6rem;
-        margin-right: 1.5rem;
+        margin-right: 0.5rem;
         margin-bottom: 0rem;
       }
     }
@@ -175,18 +170,18 @@ export const Footer = styled.div`
       font-size: 0.9rem;
       color: ${colors.colorTextTitle};
 
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
 
       @media (min-width: 1024px) {
-        text-align: initial;
+        text-align: center;
         font-size: 1.6rem;
-        margin-right: 1.5rem;
+        margin-right: 0rem;
         margin-bottom: 0rem;
       }
     }
 
     @media (max-width: 768px) {
-      margin-left: 5rem;
+      margin-left: 0rem;
     }
   }
 
@@ -208,7 +203,7 @@ export const Footer = styled.div`
     }
 
     @media (max-width: 768px) {
-      margin-left: 5rem;
+      margin-left: 0rem;
     }
 
     strong {
@@ -222,31 +217,7 @@ export const Footer = styled.div`
       }
     }
   }
-`;
 
-export const ButtonsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 70vw;
-  max-width: 40vw;
-
-  margin-left: 4rem;
-  @media (min-width: 1024px) {
-    flex-direction: row;
-  }
-
-  @media (max-width: 768px) {
-    margin-top: 0px;
-    margin-left: 10rem;
-    width: 100%;
-  }
-  @media (max-width: 425px) {
-    margin-top: 0px;
-    margin-left: 5rem;
-    width: 100%;
-  }
-
-  border: 0;
   a {
     width: 15rem;
     height: 4rem;
@@ -262,27 +233,7 @@ export const ButtonsContainer = styled.div`
     margin-bottom: 2rem;
 
     transition: background-color 0.2s;
-  }
-
-  a:first-child {
-    margin-right: 1.6rem;
-
-    @media (max-width: 768px) {
-      margin-right: 0rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    flex-direction: row;
-    a {
-      margin-bottom: 0rem;
-    }
-  }
-
-  @media (max-width: 768px) {
-    a {
-      margin-right: 0rem;
-    }
+    margin: 1rem;
   }
 `;
 

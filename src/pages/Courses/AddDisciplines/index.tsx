@@ -7,20 +7,20 @@ import { useParams } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
-import Layout from '../../../_layouts/auth';
+import Layout from '../../_layouts/auth';
 import {
   GobackButton,
   Header,
   ScheduleItem,
   Form,
   Footer,
-} from '../../../_layouts/auth/styles';
-import api from '../../../../_services/api';
-import Button from '../../../../components/Button';
-import Select from '../../../../components/Form/Select_';
-import { useLoading } from '../../../../hooks/loading';
-import { useToast } from '../../../../hooks/toast';
-import getValidationErros from '../../../../utils/getValidationErros';
+} from '../../_layouts/auth/styles';
+import api from '../../../_services/api';
+import Button from '../../../components/Button';
+import Select from '../../../components/Form/Select_';
+import { useLoading } from '../../../hooks/loading';
+import { useToast } from '../../../hooks/toast';
+import getValidationErros from '../../../utils/getValidationErros';
 import { ListDisciplineButton } from './styles';
 
 interface ParamTypes {

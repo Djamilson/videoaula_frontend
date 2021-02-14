@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-import { colors } from '../../../../../../styles';
-
-export const Container = styled.div``;
+import { colors } from '../../../../../styles';
 
 export const ContentTable = styled.table`
   border-collapse: collapse;

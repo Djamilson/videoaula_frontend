@@ -5,15 +5,15 @@ import { useHistory, useParams } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
-import Layout from '../../../_layouts/auth';
-import { Form, GroupButton, Header } from '../../../_layouts/auth/styles';
-import { ScheduleItem, GobackButton } from '../../../_layouts/auth/styles';
-import api from '../../../../_services/api';
-import Button from '../../../../components/Button';
-import Input from '../../../../components/Form/Input';
-import { useLoading } from '../../../../hooks/loading';
-import { useToast } from '../../../../hooks/toast';
-import getValidationErros from '../../../../utils/getValidationErros';
+import Layout from '../../_layouts/auth';
+import { Form, GroupButton, Header } from '../../_layouts/auth/styles';
+import { ScheduleItem, GobackButton } from '../../_layouts/auth/styles';
+import api from '../../../_services/api';
+import Button from '../../../components/Button';
+import Input from '../../../components/Form/Input';
+import { useLoading } from '../../../hooks/loading';
+import { useToast } from '../../../hooks/toast';
+import getValidationErros from '../../../utils/getValidationErros';
 
 interface ParamTypes {
   disciplineId: string;

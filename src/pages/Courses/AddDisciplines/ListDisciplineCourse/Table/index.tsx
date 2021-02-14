@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, ContentTable } from './styles';
+import { ContentTable } from './styles';
 
 interface IDiscipline {
   id: string;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { Footer, Header } from '../../../../_layouts/auth/styles';
-import { colors } from '../../../../../styles';
+import { Footer, Header } from '../../../_layouts/auth/styles';
+import { colors } from '../../../../styles';
 
 export const Container = styled.div`
   background: ${colors.colorBoxBase};

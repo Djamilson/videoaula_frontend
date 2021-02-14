@@ -5,22 +5,18 @@ import { useHistory, useParams } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
-import Layout from '../../../_layouts/auth';
-import { Footer, Form } from '../../../_layouts/auth/styles';
-import {
-  Header,
-  GroupButton,
-  GobackButton,
-} from '../../../_layouts/auth/styles';
-import api from '../../../../_services/api';
-import Button from '../../../../components/Button';
-import NewFile from '../../../../components/Form/File';
-import Input from '../../../../components/Form/Input';
-import { useLoading } from '../../../../hooks/loading';
-import { useToast } from '../../../../hooks/toast';
-import getValidationErros from '../../../../utils/getValidationErros';
-import * as masks from '../../../../utils/masks';
-import { schemaValidationCurrency } from '../../../../utils/schema';
+import Layout from '../../_layouts/auth';
+import { Footer, Form } from '../../_layouts/auth/styles';
+import { Header, GroupButton, GobackButton } from '../../_layouts/auth/styles';
+import api from '../../../_services/api';
+import Button from '../../../components/Button';
+import NewFile from '../../../components/Form/File';
+import Input from '../../../components/Form/Input';
+import { useLoading } from '../../../hooks/loading';
+import { useToast } from '../../../hooks/toast';
+import getValidationErros from '../../../utils/getValidationErros';
+import * as masks from '../../../utils/masks';
+import { schemaValidationCurrency } from '../../../utils/schema';
 import { InputPrice } from './styles';
 
 interface ParamTypes {

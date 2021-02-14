@@ -1,7 +1,14 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
 
+import Courses from '../pages/Courses';
+import AddDisciplines from '../pages/Courses/AddDisciplines';
+import CourseDisciplines from '../pages/Courses/AddDisciplines/ListDisciplineCourse';
+import EditCoursesImage from '../pages/Courses/EditImage';
+import NewCourses from '../pages/Courses/NewCourse';
 import Dashboard from '../pages/Dashboard';
+import Disciplines from '../pages/Disciplines';
+import NewDisciplines from '../pages/Disciplines/NewDiscipline';
 import Home from '../pages/Home';
 import Addresses from '../pages/MyAccount/Address';
 import AddressForm from '../pages/MyAccount/Address/AddressForm';
@@ -20,13 +27,6 @@ import SelectAddress from '../pages/Payment/SelectAddress';
 import Study from '../pages/Study';
 import Classes from '../pages/Study/Classes';
 import ClassesForm from '../pages/Study/Classes/Form';
-import Courses from '../pages/Study/Courses';
-import AddDisciplines from '../pages/Study/Courses/AddDisciplines';
-import CourseDisciplines from '../pages/Study/Courses/AddDisciplines/ListDisciplineCourse';
-import EditCoursesImage from '../pages/Study/Courses/EditImage';
-import NewCourses from '../pages/Study/Courses/NewCourse';
-import Disciplines from '../pages/Study/Disciplines';
-import NewDisciplines from '../pages/Study/Disciplines/NewDiscipline';
 import DisciplineThemes from '../pages/Study/DisciplineThemes';
 import ForgotPassword from '../pages/User/Login/ForgotPassword';
 import ResetPassword from '../pages/User/Login/ResetPassword';

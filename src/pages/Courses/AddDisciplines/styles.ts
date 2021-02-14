@@ -1,7 +1,7 @@
 import { shade } from 'polished';
 import styled from 'styled-components';
 
-import { colors } from '../../../../styles';
+import { colors } from '../../../styles';
 
 export const ListDisciplineButton = styled.button`
   width: 185px;

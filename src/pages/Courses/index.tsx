@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { FcAddDatabase } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
 
-import Layout from '../../_layouts/auth';
-import api from '../../../_services/api';
-import { formatPrice } from '../../../utils';
+import Layout from '../_layouts/auth';
+import api from '../../_services/api';
+import { formatPrice } from '../../utils';
 import { Man, NavButton } from './styles';
 import Table from './Table';
 

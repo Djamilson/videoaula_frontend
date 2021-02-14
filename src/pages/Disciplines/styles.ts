@@ -1,7 +1,7 @@
 import { shade } from 'polished';
 import styled from 'styled-components';
 
-import { colors } from '../../../styles';
+import { colors } from '../../styles';
 
 export const Man = styled.div`
   background: ${colors.colorBoxBase};

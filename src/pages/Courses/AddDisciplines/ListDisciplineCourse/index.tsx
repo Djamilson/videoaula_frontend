@@ -3,10 +3,10 @@ import { FiArrowLeft } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-import Layout from '../../../../_layouts/auth';
-import { GobackButton } from '../../../../_layouts/auth/styles';
-import api from '../../../../../_services/api';
-import { useLoading } from '../../../../../hooks/loading';
+import Layout from '../../../_layouts/auth';
+import { GobackButton } from '../../../_layouts/auth/styles';
+import api from '../../../../_services/api';
+import { useLoading } from '../../../../hooks/loading';
 import { Container, MyHeader, MyFooter } from './styles';
 import Table from './Table';
 

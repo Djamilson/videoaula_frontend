@@ -1,7 +1,7 @@
 import { shade } from 'polished';
 import styled from 'styled-components';
 
-import { colors } from '../../../../styles';
+import { colors } from '../../../styles';
 
 export const ContainerForm = styled.div`
   form {
