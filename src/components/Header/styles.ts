@@ -55,8 +55,8 @@ export const Content = styled.div`
   flex-direction: row;
   border: 1px solid #f00;
 
-  @media (max-width: 974px) {
-    margin: 0 10px;
+  @media (min-width: 1024px) {
+    margin: 0;
   }
 
   @media (min-width: 425px) {
