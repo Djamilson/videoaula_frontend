@@ -17,7 +17,7 @@ export const ButtonHamburger = styled.button<IProps>`
   top: ${(props) => (props.visible === false ? '2.4rem' : '2.6rem')};
   left: ${(props) => (props.visible === false ? '280px' : '1rem')};
 
-  @media (min-width: 974px) {
+  @media (min-width: 1024px) {
     display: none;
   }
 

@@ -21,7 +21,7 @@ const Header: React.FC = () => {
   const { signOut, user } = useAuth();
   const nameUser = user?.person.name.split(' ')[0];
   const url_avatar = user?.person.avatar_url;
-  const { menus } = user;
+  const menus = user?.menus;
 
   const [sticky, setSticky] = useState({ isSticky: false, offset: 0 });
   const headerRef = useRef<HTMLDivElement>(null);

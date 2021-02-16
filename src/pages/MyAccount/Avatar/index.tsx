@@ -11,6 +11,7 @@ import { useAuth } from '../../../hooks/auth';
 import { useLoading } from '../../../hooks/loading';
 import { useToast } from '../../../hooks/toast';
 import { AvatarInput } from './styles';
+import { authRoutes } from '../../../routes/Routes/AuthRoutes';
 
 const Profile: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -42,7 +43,7 @@ const Profile: React.FC = () => {
           };
 
           updateUser(newUser);
-          history.push('/orders');
+          history.push(authRoutes.orders);
 
           addToast({
             type: 'success',

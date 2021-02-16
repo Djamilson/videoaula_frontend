@@ -11,6 +11,8 @@ import Input from '../../../../components/Form/Input';
 import { useAuth } from '../../../../hooks/auth';
 import { useLoading } from '../../../../hooks/loading';
 import { useToast } from '../../../../hooks/toast';
+import {} from '../../../../routes/Routes';
+import { authRoutes } from '../../../../routes/Routes/AuthRoutes';
 import getValidationErros from '../../../../utils/getValidationErros';
 import {
   Container,
@@ -60,7 +62,7 @@ const SignIn: React.FC = () => {
 
         updateUser({ ...user, menus: loadMenus(user.user_groups) });
 
-        history.push('/dashboard');
+        history.push(authRoutes.dashboard);
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErros(err);
@@ -100,7 +102,7 @@ const SignIn: React.FC = () => {
       </Background>
       <Content>
         <AnimationContainer>
-          <Link to="/home">
+          <Link to={authRoutes.home}>
             <FiHome />
             Home
           </Link>
@@ -121,10 +123,10 @@ const SignIn: React.FC = () => {
               </span>
               <strong>Entrar</strong>
             </MyButton>
-            <Link to="/forgot_password">Esqueci minha senha</Link>
+            <Link to={authRoutes.forgotPassword}>Esqueci minha senha</Link>
           </Form>
 
-          <Link to="/signup">
+          <Link to={authRoutes.signup}>
             <FiLogIn />
             Cadastre-se
           </Link>

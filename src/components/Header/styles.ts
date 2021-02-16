@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 
 import { colors } from '../../styles';
+import { px2vw } from '../../utils/px2vw';
 
 interface Props {
   visible: boolean;
@@ -48,15 +49,18 @@ export const Box = styled.div`
 
 export const Content = styled.div`
   height: 64px;
-  width: 100%;
-  margin: 0;
+  width: ${px2vw(-1)};
+  padding: 0;
+  margin: 0 30px 0px 50px;
   display: flex;
   align-items: center;
   flex-direction: row;
-  border: 1px solid #f00;
+  border: 0;
 
   @media (min-width: 1024px) {
     margin: 0;
+    padding: 0;
+    width: 100%;
   }
 
   @media (min-width: 425px) {

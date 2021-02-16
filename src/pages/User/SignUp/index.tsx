@@ -11,6 +11,7 @@ import logoImg from '../../../assets/proffy.png';
 import Input from '../../../components/Form/Input';
 import { useLoading } from '../../../hooks/loading';
 import { useToast } from '../../../hooks/toast';
+import { authRoutes } from '../../../routes/Routes/AuthRoutes';
 import getValidationErros from '../../../utils/getValidationErros';
 import { MyButton } from '../Login/SignIn/styles';
 import { AnimationContainer, Background, Container, Content } from './styles';
@@ -49,7 +50,7 @@ const SignUp: React.FC = () => {
         });
 
         await api.post('/users', { ...data, nameGroup: 'role-student' });
-        history.push('/signin');
+        history.push(authRoutes.signin);
 
         addToast({
           type: 'success',
@@ -76,6 +77,10 @@ const SignUp: React.FC = () => {
     [addToast, addLoading, removeLoading, history],
   );
 
+  const goBack = useCallback(() => {
+    history.goBack();
+  }, [history]);
+
   return (
     <Container>
       <Background />
@@ -100,10 +105,10 @@ const SignUp: React.FC = () => {
               <strong>Cadastra</strong>
             </MyButton>
           </Form>
-          <Link to="/">
+          <button type="button" onClick={() => goBack()}>
             <FiArrowLeft />
             Voltar
-          </Link>
+          </button>
         </AnimationContainer>
       </Content>
     </Container>

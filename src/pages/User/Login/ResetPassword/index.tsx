@@ -6,6 +6,7 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
+import { GobackButton } from '../../../_layouts/auth/styles';
 import api from '../../../../_services/api';
 import logoCurso from '../../../../assets/images/logo.svg';
 import Input from '../../../../components/Form/Input';
@@ -63,7 +64,7 @@ const ResetPassword: React.FC = () => {
           token,
         });
 
-        history.push('/');
+        history.goBack();
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErros(err);
@@ -82,6 +83,10 @@ const ResetPassword: React.FC = () => {
     },
     [addToast, addLoading, removeLoading, location.search, history],
   );
+
+  const goBack = useCallback(() => {
+    history.goBack();
+  }, [history]);
 
   return (
     <Container>
@@ -110,10 +115,10 @@ const ResetPassword: React.FC = () => {
             </MyButton>
           </Form>
 
-          <Link to="/">
+          <button type="button" onClick={() => goBack()}>
             <FiLogIn />
             Voltar login
-          </Link>
+          </button>
         </AnimationContainer>
       </Content>
       <Background>

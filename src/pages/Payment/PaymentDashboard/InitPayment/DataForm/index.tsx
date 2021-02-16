@@ -13,6 +13,7 @@ import Button from '../../../../../components/Button';
 import { useAuth } from '../../../../../hooks/auth';
 import { useLoading } from '../../../../../hooks/loading';
 import { useToast } from '../../../../../hooks/toast';
+import { authRoutes } from '../../../../../routes/Routes/AuthRoutes';
 import IPerson from '../../../../../types/person';
 import getValidationErrors from '../../../../../utils/getValidationErros';
 import {
@@ -382,7 +383,7 @@ const DataForm: React.FC = () => {
           description: 'Dados cadastrado com sucesso!',
         });
 
-        history.push('/payments/dashboards');
+        history.push(authRoutes.paymentsDashboards);
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
