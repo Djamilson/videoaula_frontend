@@ -1,17 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import { FiInfo } from 'react-icons/fi';
 
-import { format } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
-
 import Layout from '../_layouts/auth';
-import {
-  CourseList,
-  OpenDetails,
-  OpenOnWeekends,
-  OpenButton,
-  LinkGiveClasses,
-} from './styles';
+import { CourseList, OpenDetails, OpenOnWeekends } from './styles';
 
 interface ICourse {
   id: string;
@@ -48,8 +39,8 @@ const NotFound: React.FC = () => {
         <OpenDetails>
           <OpenOnWeekends>
             <FiInfo size={32} color="#F003" />
-            Você! <br />
-            Estou no erro, me lasquei.
+            Atenção! <br />
+            Você não tem acesso a essa página solicitada, se lascou!!!!.
           </OpenOnWeekends>
         </OpenDetails>
       </CourseList>

@@ -30,6 +30,7 @@ import Input from '../../../../components/Form/Input';
 import { useAuth } from '../../../../hooks/auth';
 import { useLoading } from '../../../../hooks/loading';
 import { useToast } from '../../../../hooks/toast';
+import authRoutes from '../../../../routes/Routes/AuthRoutes';
 import ICourse from '../../../../types/course';
 import { formatPrice, getCardType, onlyNumbers } from '../../../../utils';
 import getValidationErros from '../../../../utils/getValidationErros';
@@ -49,7 +50,6 @@ import {
   ScheduleItemCard,
   ButtonBoleto,
 } from './styles';
-import { authRoutes } from '../../../../routes/Routes/AuthRoutes';
 
 interface ParamTypes {
   courseId: string;

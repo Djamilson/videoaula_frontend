@@ -1,27 +1,16 @@
-import { useAuth } from '../../hooks/auth';
-
-interface IRoleUser {
-  name: string;
-}
-
-interface IrequiredRoles {
-  role: string;
-}
-
 interface IProps {
-  rolesUser: IRoleUser[];
-  requiredRoles: IrequiredRoles[];
+  rolesUser: string[];
+  requiredRoles: string[] | undefined;
 }
 
 export const checkAuth = ({ rolesUser, requiredRoles }: IProps): boolean => {
   let hasRequiredRole = false;
 
-  requiredRoles.forEach((item) => {
-    rolesUser.forEach((roleUser) => {
-      if (item.role === roleUser.name) {
-        hasRequiredRole = true;
-      }
-    });
+  requiredRoles?.forEach((role) => {
+    const x = rolesUser?.some((item) => item === role);
+    if (x) {
+      hasRequiredRole = true;
+    }
   });
 
   return hasRequiredRole;

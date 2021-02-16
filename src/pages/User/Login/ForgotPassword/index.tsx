@@ -11,7 +11,7 @@ import logoCurso from '../../../../assets/images/logo.svg';
 import Input from '../../../../components/Form/Input';
 import { useLoading } from '../../../../hooks/loading';
 import { useToast } from '../../../../hooks/toast';
-import { authRoutes } from '../../../../routes/Routes/AuthRoutes';
+import authRoutes from '../../../../routes/Routes/AuthRoutes';
 import getValidationErros from '../../../../utils/getValidationErros';
 import { MyButton } from '../SignIn/styles';
 import { Container, Content, AnimationContainer, Background } from './styles';

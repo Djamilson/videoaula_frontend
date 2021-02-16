@@ -16,7 +16,7 @@ import { Form, ScheduleItem } from '../../_layouts/auth/styles';
 import api from '../../../_services/api';
 import warningIcon from '../../../assets/images/icons/warning.svg';
 import Select from '../../../components/Form/Select';
-import { authRoutes } from '../../../routes/Routes/AuthRoutes';
+import authRoutes from '../../../routes/Routes/AuthRoutes';
 import Table from './Table';
 import TableTheme from './TableTheme';
 

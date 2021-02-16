@@ -24,8 +24,8 @@ export const OpenDetails = styled.div`
 `;
 
 export const OpenOnWeekends = styled.div`
-  background: linear-gradient(154.16deg, #edfff6 7.85%, #ffffff 91.03%);
-  border: 1px solid #a1e9c5;
+  background: linear-gradient(154.16deg, #f003 7.85%, #ffffff 91.03%);
+  border: 1px solid #f003;
   color: #37c77f;
   width: 300px;
   border-radius: 5px;

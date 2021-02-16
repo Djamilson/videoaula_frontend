@@ -15,7 +15,7 @@ import Input from '../../../components/Form/Input';
 import { useAuth } from '../../../hooks/auth';
 import { useLoading } from '../../../hooks/loading';
 import { useToast } from '../../../hooks/toast';
-import { authRoutes } from '../../../routes/Routes/AuthRoutes';
+import authRoutes from '../../../routes/Routes/AuthRoutes';
 import IDocuments from '../../../types/documents';
 import { onlyNumbers, onlyLetters } from '../../../utils';
 import getValidationErrors from '../../../utils/getValidationErros';

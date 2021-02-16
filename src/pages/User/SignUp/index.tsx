@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import { FiArrowLeft, FiCheck, FiLock, FiMail, FiUser } from 'react-icons/fi';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -11,7 +11,7 @@ import logoImg from '../../../assets/proffy.png';
 import Input from '../../../components/Form/Input';
 import { useLoading } from '../../../hooks/loading';
 import { useToast } from '../../../hooks/toast';
-import { authRoutes } from '../../../routes/Routes/AuthRoutes';
+import authRoutes from '../../../routes/Routes/AuthRoutes';
 import getValidationErros from '../../../utils/getValidationErros';
 import { MyButton } from '../Login/SignIn/styles';
 import { AnimationContainer, Background, Container, Content } from './styles';

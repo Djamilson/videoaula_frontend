@@ -1,5 +1,4 @@
 import React from 'react';
-import { FiInfo } from 'react-icons/fi';
 import {
   Route as ReactDOMRoute,
   RouteProps as ReactDOMRouteProps,
@@ -7,14 +6,9 @@ import {
 } from 'react-router-dom';
 
 import { useAuth } from '../hooks/auth';
-import Layout from '../pages/_layouts/auth';
 import NotFound from '../pages/NotFound';
-import {
-  CourseList,
-  OpenDetails,
-  OpenOnWeekends,
-} from '../pages/NotFound/styles';
-import { authRoutes } from './Routes/AuthRoutes';
+import authRoutes from './Routes/AuthRoutes';
+import { checkAuth } from './Routes/checkAuth';
 
 interface RouteProps extends ReactDOMRouteProps {
   isPrivate?: boolean;
@@ -30,26 +24,19 @@ const Route: React.FC<RouteProps> = ({
 }) => {
   const { user } = useAuth();
 
-  console.log('userHasRequiredRole user', user);
-  console.log('userHasRequiredRole 1', requiredRoles);
+  const rolesUser = user?.user_groups.map((group) => group.id);
 
   let userHasRequiredRole = false;
-  //const userHasRequiredRole = requiredRoles?.includes('admin');
-  requiredRoles?.forEach((role) => {
-    if (role === 'role-admin') userHasRequiredRole = true;
-  });
-  console.log('userHasRequiredRole', userHasRequiredRole);
 
-  const myComponent = (location) => {
-    //let pathname = authRoutes.home;
+  if (
+    typeof user !== typeof undefined &&
+    typeof requiredRoles !== typeof undefined
+  ) {
+    userHasRequiredRole = checkAuth({ rolesUser, requiredRoles });
+  }
 
-    console.log('location=>>> ', location);
-    console.log('isPrivate==>>>', isPrivate);
-    console.log('Entrei no if=============', userHasRequiredRole);
+  const myComponent = () => {
     if (isPrivate && !userHasRequiredRole) {
-      console.log('<<<Entrei no if>>>', <Component />);
-      console.log('<<<Entrei no if>>>', userHasRequiredRole);
-
       return <NotFound />;
     }
 
@@ -60,10 +47,10 @@ const Route: React.FC<RouteProps> = ({
     <ReactDOMRoute
       {...rest}
       render={({ location }) => {
-        document.querySelectorAll(' p * div ');
+        //document.querySelectorAll(' p * div ');
 
         return isPrivate === !!user ? (
-          <>{myComponent(location)}</>
+          <>{myComponent()}</>
         ) : (
           <Redirect
             to={{

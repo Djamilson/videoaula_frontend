@@ -14,6 +14,11 @@ interface IPros {
   disciplines: string;
   disciplinesNew: string;
   addressesNew: string;
+  phones: string;
+  addresses: string;
+  orders: string;
+  passwords: string;
+  selectAddress: string;
 
   addressesEditAddressId: string;
   paymentDashboardInitPaymentPhoneAddress: string;
@@ -32,15 +37,9 @@ interface IPros {
   paymentsDashboardInitPaymentCourseId: string;
   paymentsDashboards: string;
   ordersCoursesOrder_id: string;
-
-  phones: string;
-  addresses: string;
-  orders: string;
-  passwords: string;
-  selectAddress: string;
 }
 
-export const authRoutes = <IPros>{
+const authRoutes = <IPros>{
   dashboard: '/dashboard',
   home: '/home',
   forgotPassword: '/forgot_password',
@@ -52,10 +51,21 @@ export const authRoutes = <IPros>{
   profile: '/profile',
   documents: 'documents',
   avatar: '/avatar',
+  addresses: '/addresses',
+  addressesNew: '/addresses/new',
+  orders: '/orders',
+  phones: '/phones',
+  passwords: '/passwords',
+  selectAddress: '/select_address',
+
   studyCourse_id: '/study/:course_id',
   disciplines: '/disciplines',
   disciplinesNew: '/disciplines/new',
-  addressesNew: '/addresses/new',
+
+  classesForm: '/classes/form',
+  classes: '/classes',
+  courses: '/courses',
+  coursesNew: '/courses/new',
 
   addressesEditAddressId: '/addresses/edit/:addressId',
   paymentDashboardInitPaymentPhoneAddress:
@@ -65,10 +75,7 @@ export const authRoutes = <IPros>{
   addDisciplineCourseCourseId: '/add/discipline/course/:course_id',
   disciplinesThemesCourseDisciplineId:
     '/disciplines/themes/:courseDisciplineId',
-  classesForm: '/classes/form',
-  classes: '/classes',
-  courses: '/courses',
-  coursesNew: '/courses/new',
+
   coursesCourseIdEdit: '/courses/:courseId/edit',
   coursesCourseIdEditImage: '/courses/:courseId/edit/image',
   coursesDisciplinesCourseId: '/courses/disciplines/:courseId',
@@ -78,10 +85,6 @@ export const authRoutes = <IPros>{
     '/payments/dashboard/init-payment/:courseId',
   paymentsDashboards: '/payments/dashboards',
   ordersCoursesOrder_id: '/orders/courses/:order_id',
-
-  phones: '/phones',
-  addresses: '/addresses',
-  orders: '/orders',
-  passwords: '/passwords',
-  selectAddress: '/select_address',
 };
+
+export default authRoutes;

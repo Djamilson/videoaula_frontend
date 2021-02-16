@@ -5,11 +5,10 @@ import IMenu from '../../../types/menu';
 import { NavigationLink, Navigation, MenuLI } from './styles';
 
 interface IProps {
-  handleToggleMenu(): void;
   menus: IMenu[];
 }
 
-const MeNavigation: React.FC<IProps> = ({ handleToggleMenu, menus }) => {
+const MeNavigation: React.FC<IProps> = ({ menus }) => {
   const location = useLocation();
 
   const [serealizableList, setSerealizableList] = useState<IMenu[]>(() => {
@@ -52,7 +51,6 @@ const MeNavigation: React.FC<IProps> = ({ handleToggleMenu, menus }) => {
             <NavigationLink
               to={menu.path}
               aria-label={menu.label}
-              onClick={handleToggleMenu}
               selected={menu.selected}
             >
               {menu.label}

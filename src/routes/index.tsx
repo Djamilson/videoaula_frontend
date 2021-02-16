@@ -18,7 +18,6 @@ import Orders from '../pages/MyAccount/Order';
 import Passwords from '../pages/MyAccount/Password';
 import Phones from '../pages/MyAccount/Phone';
 import Profile from '../pages/MyAccount/Profile';
-import NotFound from '../pages/NotFound';
 import OrderCourses from '../pages/Payment/OrderCourses';
 import PaymentDashboard from '../pages/Payment/PaymentDashboard';
 import InitPayment from '../pages/Payment/PaymentDashboard/InitPayment';
@@ -34,11 +33,18 @@ import ResetPassword from '../pages/User/Login/ResetPassword';
 import SigIn from '../pages/User/Login/SignIn';
 import SignUp from '../pages/User/SignUp';
 import Route from './Route';
-import { authRoutes } from './Routes/AuthRoutes';
-import { userRoles } from './Routes/UserRoles';
+import authRoutes from './Routes/AuthRoutes';
+import userRoles from './Routes/UserRoles';
 
 const Routes: React.FC = () => (
   <Switch>
+    <Route path={authRoutes.home} exact component={Home} />
+    <Route path={authRoutes.signin} exact component={SigIn} />
+    <Route path={authRoutes.signup} component={SignUp} />
+
+    <Route path={authRoutes.forgotPassword} component={ForgotPassword} />
+    <Route path={authRoutes.resetPassword} component={ResetPassword} />
+
     <Route
       path="/"
       exact
@@ -54,36 +60,34 @@ const Routes: React.FC = () => (
       requiredRoles={userRoles.all}
     />
 
-    <Route path={authRoutes.home} exact component={Home} />
-    <Route path={authRoutes.signin} exact component={SigIn} />
-    <Route path={authRoutes.signup} component={SignUp} />
-
-    <Route path={authRoutes.forgotPassword} component={ForgotPassword} />
-    <Route path={authRoutes.resetPassword} component={ResetPassword} />
-
-    <Route path={authRoutes.dashboard} exact component={Dashboard} />
-    <Route path={authRoutes.error} exact component={NotFound} isPrivate />
-    <Route path={authRoutes.profile} exact component={Profile} isPrivate />
-    <Route path={authRoutes.documents} exact component={Documents} isPrivate />
-    <Route path={authRoutes.avatar} exact component={Avatar} isPrivate />
-    <Route path={authRoutes.studyCourse_id} exact component={Study} isPrivate />
     <Route
-      path={authRoutes.disciplines}
+      path={authRoutes.profile}
       exact
-      component={Disciplines}
+      component={Profile}
       isPrivate
+      requiredRoles={userRoles.all}
     />
     <Route
-      path={authRoutes.disciplinesNew}
+      path={authRoutes.documents}
       exact
-      component={NewDisciplines}
+      component={Documents}
       isPrivate
+      requiredRoles={userRoles.all}
     />
+    <Route
+      path={authRoutes.avatar}
+      exact
+      component={Avatar}
+      isPrivate
+      requiredRoles={userRoles.all}
+    />
+
     <Route
       path={authRoutes.addressesNew}
       exact
       component={AddressForm}
       isPrivate
+      requiredRoles={userRoles.all}
     />
 
     <Route
@@ -91,12 +95,37 @@ const Routes: React.FC = () => (
       exact
       component={AddressForm}
       isPrivate
+      requiredRoles={userRoles.all}
     />
     <Route
       path={authRoutes.paymentDashboardInitPaymentPhoneAddress}
       exact
       component={DataForm}
       isPrivate
+      requiredRoles={userRoles.all}
+    />
+    <Route
+      path={authRoutes.courses}
+      exact
+      component={Courses}
+      isPrivate
+      requiredRoles={userRoles.roleAdmins}
+    />
+
+    <Route path={authRoutes.studyCourse_id} exact component={Study} isPrivate />
+    <Route
+      path={authRoutes.disciplines}
+      exact
+      component={Disciplines}
+      isPrivate
+      requiredRoles={userRoles.roleAdmins}
+    />
+    <Route
+      path={authRoutes.disciplinesNew}
+      exact
+      component={NewDisciplines}
+      isPrivate
+      requiredRoles={userRoles.roleAdmins}
     />
 
     <Route
@@ -104,44 +133,45 @@ const Routes: React.FC = () => (
       path={authRoutes.disciplinesDisciplineIdEdit}
       component={NewDisciplines}
       isPrivate
+      requiredRoles={userRoles.roleAdmins}
     />
+
     <Route
       path={authRoutes.addDisciplineCourseCourseId}
       exact
       component={AddDisciplines}
       isPrivate
+      requiredRoles={userRoles.roleAdmins}
     />
     <Route
       path={authRoutes.disciplinesThemesCourseDisciplineId}
       exact
       component={DisciplineThemes}
       isPrivate
+      requiredRoles={userRoles.roleAdminRoleStudent}
     />
     <Route
       path={authRoutes.classesForm}
       exact
       component={ClassesForm}
       isPrivate
+      requiredRoles={userRoles.roleAdminsRoleTeacher}
     />
     <Route path={authRoutes.classes} exact component={Classes} isPrivate />
-    <Route
-      path={authRoutes.courses}
-      exact
-      component={Courses}
-      isPrivate
-      requiredRoles={[String('role-admin'), String('role-user')]}
-    />
+
     <Route
       path={authRoutes.coursesNew}
       exact
       component={NewCourses}
       isPrivate
+      requiredRoles={userRoles.roleAdmins}
     />
     <Route
       exact
       path={authRoutes.coursesCourseIdEdit}
       component={NewCourses}
       isPrivate
+      requiredRoles={userRoles.roleAdmins}
     />
     <Route
       exact
@@ -190,8 +220,6 @@ const Routes: React.FC = () => (
       component={SelectAddress}
       isPrivate
     />
-
-    <Route path={authRoutes.error} exact component={NotFound} isPrivate />
   </Switch>
 );
 

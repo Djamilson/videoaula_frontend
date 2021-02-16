@@ -13,7 +13,7 @@ import Button from '../../../../../components/Button';
 import { useAuth } from '../../../../../hooks/auth';
 import { useLoading } from '../../../../../hooks/loading';
 import { useToast } from '../../../../../hooks/toast';
-import { authRoutes } from '../../../../../routes/Routes/AuthRoutes';
+import authRoutes from '../../../../../routes/Routes/AuthRoutes';
 import IPerson from '../../../../../types/person';
 import getValidationErrors from '../../../../../utils/getValidationErros';
 import {

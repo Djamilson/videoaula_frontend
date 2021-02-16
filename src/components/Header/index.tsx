@@ -63,7 +63,7 @@ const Header: React.FC = () => {
             <img src={logoImg} alt="Proffy" />
           </NavLink>
           <ButtonMenu handleClick={handleToggleMenu} isActive={modalOpen} />
-          <Navigation handleToggleMenu={handleToggleMenu} menus={menus} />
+          <Navigation menus={menus} />
         </Box>
         <Profile>
           <ProfileLink to="/profile">

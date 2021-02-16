@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import api from '../../../../_services/api';
 import { useAuth } from '../../../../hooks/auth';
 import { CourseStock } from '../../../../hooks/cartCourse';
-import { authRoutes } from '../../../../routes/Routes/AuthRoutes';
+import authRoutes from '../../../../routes/Routes/AuthRoutes';
 import IPerson from '../../../../types/person';
 import { Container } from './styles';
 

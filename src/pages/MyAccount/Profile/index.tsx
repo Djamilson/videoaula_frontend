@@ -14,7 +14,7 @@ import Input from '../../../components/Form/Input';
 import { useAuth } from '../../../hooks/auth';
 import { useLoading } from '../../../hooks/loading';
 import { useToast } from '../../../hooks/toast';
-import { authRoutes } from '../../../routes/Routes/AuthRoutes';
+import  authRoutes  from '../../../routes/Routes/AuthRoutes';
 import getValidationErros from '../../../utils/getValidationErros';
 
 interface ProfileFormData {

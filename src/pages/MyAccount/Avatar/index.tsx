@@ -10,8 +10,8 @@ import api from '../../../_services/api';
 import { useAuth } from '../../../hooks/auth';
 import { useLoading } from '../../../hooks/loading';
 import { useToast } from '../../../hooks/toast';
+import authRoutes from '../../../routes/Routes/AuthRoutes';
 import { AvatarInput } from './styles';
-import { authRoutes } from '../../../routes/Routes/AuthRoutes';
 
 const Profile: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
