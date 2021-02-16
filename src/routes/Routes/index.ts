@@ -1,3 +1,4 @@
 import { authRoutes } from './AuthRoutes';
+import { userRoles } from './UserRoles';
 
-export default { authRoutes };
+export default { authRoutes, userRoles };

@@ -6,7 +6,7 @@ enum UserRoles {
   roleTeacher = 'role-teacher',
 }
 
-const userRoles = {
+export const userRoles = {
   roleAdmins: [String(UserRoles.roleSuperAdmin), String(UserRoles.roleAdmin)],
   roleUsers: [String(UserRoles.roleUser)],
   roleStudent: [String(UserRoles.roleStudent)],
@@ -19,5 +19,3 @@ const userRoles = {
     String(UserRoles.roleTeacher),
   ],
 };
-
-export default userRoles;

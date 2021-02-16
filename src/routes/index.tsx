@@ -35,11 +35,24 @@ import SigIn from '../pages/User/Login/SignIn';
 import SignUp from '../pages/User/SignUp';
 import Route from './Route';
 import { authRoutes } from './Routes/AuthRoutes';
+import { userRoles } from './Routes/UserRoles';
 
 const Routes: React.FC = () => (
   <Switch>
-    <Route path="/" exact component={Dashboard} isPrivate />
-    <Route path={authRoutes.dashboard} exact component={Dashboard} isPrivate />
+    <Route
+      path="/"
+      exact
+      component={Dashboard}
+      isPrivate
+      requiredRoles={userRoles.all}
+    />
+    <Route
+      path={authRoutes.dashboard}
+      exact
+      component={Dashboard}
+      isPrivate
+      requiredRoles={userRoles.all}
+    />
 
     <Route path={authRoutes.home} exact component={Home} />
     <Route path={authRoutes.signin} exact component={SigIn} />
