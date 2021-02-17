@@ -1,12 +1,11 @@
 import React, { useRef, useCallback } from 'react';
 import { FiLogIn, FiLock, FiCheck } from 'react-icons/fi';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
-import { GobackButton } from '../../../_layouts/auth/styles';
 import api from '../../../../_services/api';
 import logoCurso from '../../../../assets/images/logo.svg';
 import Input from '../../../../components/Form/Input';
