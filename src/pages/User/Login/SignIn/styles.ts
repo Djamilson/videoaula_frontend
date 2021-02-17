@@ -56,11 +56,12 @@ export const AnimationContainer = styled.div`
   animation: ${appearFromLeft} 1s;
 
   form {
-    margin-top: 60px;
     width: 340px;
     min-width: 340px;
     text-align: center;
     font-family: 'Poppins', sans-serif;
+
+    margin-top: 60px;
     margin-bottom: 2rem;
 
     h1 {
@@ -103,6 +104,17 @@ export const AnimationContainer = styled.div`
   }
 `;
 
+const appearImageLeft = keyframes`
+  from{
+    opacity:0;
+    transform: translateX(50px);
+  }
+  to{
+    opacity:1;
+    transform: translateX(0px)
+  }
+`;
+
 export const Background = styled.div`
   flex: 1;
   justify-content: center;
@@ -126,6 +138,8 @@ export const Background = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    animation: ${appearImageLeft} 1s;
 
     background: url(${signInBackgroundImg}) no-repeat center;
     background-size: 65% auto;
