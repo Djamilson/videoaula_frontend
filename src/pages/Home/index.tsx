@@ -11,7 +11,6 @@ import {
   Footer,
   LinkStudy,
   LinkGiveClasses,
-  LandingImg,
 } from './styles';
 
 const Home: React.FC = () => {

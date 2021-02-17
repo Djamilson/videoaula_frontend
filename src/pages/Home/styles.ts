@@ -3,14 +3,7 @@ import { Link } from 'react-router-dom';
 import { shade } from 'polished';
 import styled from 'styled-components';
 
-import landingImg from '../../assets/images/landing.svg';
 import { colors } from '../../styles';
-
-export const LandingImg = styled.div`
-  flex: 1;
-  background: url(${landingImg}) no-repeat center;
-  background-size: cover;
-`;
 
 export const Box = styled.div`
   width: 100%;
