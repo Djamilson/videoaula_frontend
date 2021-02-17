@@ -221,6 +221,7 @@ export const Footer = styled.div`
   a {
     width: 15rem;
     height: 4rem;
+    min-height: 4rem;
     border-radius: 0.4rem;
     font: 700 1.4rem Poppins;
 

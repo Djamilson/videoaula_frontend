@@ -49,7 +49,7 @@ const authRoutes = <IPros>{
   error: '/error',
 
   profile: '/profile',
-  documents: 'documents',
+  documents: '/documents',
   avatar: '/avatar',
   addresses: '/addresses',
   addressesNew: '/addresses/new',

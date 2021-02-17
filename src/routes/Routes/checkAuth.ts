@@ -5,6 +5,7 @@ interface IProps {
 
 export const checkAuth = ({ rolesUser, requiredRoles }: IProps): boolean => {
   let hasRequiredRole = false;
+  console.log('===>>>', rolesUser, requiredRoles);
 
   requiredRoles?.forEach((role) => {
     const x = rolesUser?.some((item) => item === role);

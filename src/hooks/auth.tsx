@@ -1,12 +1,8 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
 
 import api from '../_services/api';
-import {
-  roleAdmin,
-  roleStudent,
-  roleTeacher,
-  roleUser,
-} from '../components/Header/Menu';
+import userMenu from '../components/Header/Menu/menu';
+import { UserRoles } from '../enum/role';
 import IMenu from '../types/menu';
 
 interface Person {
@@ -78,32 +74,42 @@ const AuthProvider: React.FC = ({ children }) => {
     }>();
 
     groups.forEach((group) => {
-      if (group.name === 'role-admin') {
+      if (group.id === UserRoles.roleSuperAdmin) {
         myRetorn.push(
-          ...roleAdmin.map((menuAdmin) => {
+          ...userMenu.menuSuperAdmins.map((menuTeacher) => {
+            return { ...menuTeacher, selected: false };
+          }),
+        );
+      }
+
+      if (group.id === UserRoles.roleAdmin) {
+        myRetorn.push(
+          ...userMenu.menuAdmins.map((menuAdmin) => {
             return { ...menuAdmin, selected: false };
           }),
         );
       }
-      if (group.name === 'role-student') {
+
+      if (group.id === UserRoles.roleStudent) {
         myRetorn.push(
-          ...roleStudent.map((menuStudent) => {
+          ...userMenu.menuStudent.map((menuStudent) => {
             return { ...menuStudent, selected: false };
           }),
         );
       }
 
-      if (group.name === 'role-user') {
+      if (group.id === UserRoles.roleUser) {
         myRetorn.push(
-          ...roleUser.map((menuUser) => {
+          ...userMenu.menuUsers.map((menuUser) => {
+            console.log('Estoiuo,n,n>> ', menuUser);
             return { ...menuUser, selected: false };
           }),
         );
       }
 
-      if (group.name === 'role-teacher') {
+      if (group.id === UserRoles.roleTeacher) {
         myRetorn.push(
-          ...roleTeacher.map((menuTeacher) => {
+          ...userMenu.menuTeacher.map((menuTeacher) => {
             return { ...menuTeacher, selected: false };
           }),
         );

@@ -23,7 +23,6 @@ import PaymentDashboard from '../pages/Payment/PaymentDashboard';
 import InitPayment from '../pages/Payment/PaymentDashboard/InitPayment';
 import DataForm from '../pages/Payment/PaymentDashboard/InitPayment/DataForm';
 import MessagePayment from '../pages/Payment/PaymentDashboard/InitPayment/MessagePayment';
-import SelectAddress from '../pages/Payment/SelectAddress';
 import Study from '../pages/Study';
 import Classes from '../pages/Study/Classes';
 import ClassesForm from '../pages/Study/Classes/Form';
@@ -112,7 +111,13 @@ const Routes: React.FC = () => (
       requiredRoles={userRoles.roleAdmins}
     />
 
-    <Route path={authRoutes.studyCourse_id} exact component={Study} isPrivate />
+    <Route
+      path={authRoutes.studyCourse_id}
+      exact
+      component={Study}
+      isPrivate
+      requiredRoles={userRoles.roleStudent}
+    />
     <Route
       path={authRoutes.disciplines}
       exact
@@ -178,47 +183,71 @@ const Routes: React.FC = () => (
       path={authRoutes.coursesCourseIdEditImage}
       component={EditCoursesImage}
       isPrivate
+      requiredRoles={userRoles.all}
     />
     <Route
       exact
       path={authRoutes.coursesDisciplinesCourseId}
       component={CourseDisciplines}
       isPrivate
+      requiredRoles={userRoles.roleAdmins}
     />
     <Route
       exact
       isPrivate
       path={authRoutes.paymentsDashboardInitPaymentFinallySuccesses}
       component={MessagePayment}
+      requiredRoles={userRoles.all}
     />
     <Route
       exact
       path={authRoutes.paymentsDashboardInitPaymentCourseId}
       component={InitPayment}
       isPrivate
+      requiredRoles={userRoles.all}
     />
     <Route
       exact
       path={authRoutes.paymentsDashboards}
       component={PaymentDashboard}
       isPrivate
+      requiredRoles={userRoles.all}
     />
     <Route
       path={authRoutes.ordersCoursesOrder_id}
       exact
       component={OrderCourses}
       isPrivate
+      requiredRoles={userRoles.all}
     />
 
-    <Route path={authRoutes.phones} exact component={Phones} isPrivate />
-    <Route path={authRoutes.addresses} exact component={Addresses} isPrivate />
-    <Route path={authRoutes.orders} exact component={Orders} isPrivate />
-    <Route path={authRoutes.passwords} exact component={Passwords} isPrivate />
     <Route
-      path={authRoutes.selectAddress}
+      path={authRoutes.phones}
       exact
-      component={SelectAddress}
+      component={Phones}
       isPrivate
+      requiredRoles={userRoles.all}
+    />
+    <Route
+      path={authRoutes.addresses}
+      exact
+      component={Addresses}
+      isPrivate
+      requiredRoles={userRoles.all}
+    />
+    <Route
+      path={authRoutes.orders}
+      exact
+      component={Orders}
+      isPrivate
+      requiredRoles={userRoles.all}
+    />
+    <Route
+      path={authRoutes.passwords}
+      exact
+      component={Passwords}
+      isPrivate
+      requiredRoles={userRoles.all}
     />
   </Switch>
 );

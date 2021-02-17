@@ -36,6 +36,7 @@ const Route: React.FC<RouteProps> = ({
   }
 
   const myComponent = () => {
+    console.log('userHasRequiredRole>>> ', userHasRequiredRole);
     if (isPrivate && !userHasRequiredRole) {
       return <NotFound />;
     }
@@ -48,6 +49,7 @@ const Route: React.FC<RouteProps> = ({
       {...rest}
       render={({ location }) => {
         //document.querySelectorAll(' p * div ');
+        console.log('Huffa...', location);
 
         return isPrivate === !!user ? (
           <>{myComponent()}</>

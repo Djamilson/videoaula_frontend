@@ -63,12 +63,12 @@ const Comment: React.FC<Props> = ({
           </span>
           <article>
             <div>
-              <head>
+              <header>
                 <div>
                   <span>{comment.user.name}</span>
                   <strong>{comment.created_at}</strong>
                 </div>
-              </head>
+              </header>
             </div>
             <p>{comment.comment}</p>
           </article>
@@ -80,7 +80,6 @@ const Comment: React.FC<Props> = ({
               >
                 <strong>Responder</strong>
               </button>
-
               {useId === comment.user.id && (
                 <>
                   <button
@@ -101,6 +100,7 @@ const Comment: React.FC<Props> = ({
             </span>
           </aside>
         </section>
+
         {comment.comment_answers.length > 0 && (
           <ContainerAnswer>
             {comment.comment_answers?.map((answer: IAnswer) => (

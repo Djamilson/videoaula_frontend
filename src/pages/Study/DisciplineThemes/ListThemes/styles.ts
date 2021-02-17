@@ -44,7 +44,6 @@ export const Item = styled(Button)`
   border-bottom: 1px solid ${colors.colorLineInWhite};
   box-shadow: none;
   font-size: 1rem;
-  background-image: none;
   text-shadow: none;
   margin-bottom: 5px;
 

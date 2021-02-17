@@ -49,15 +49,16 @@ const CommentAnswer: React.FC<IPropsAnswer> = ({
           </span>
           <article>
             <div>
-              <head>
+              <header>
                 <div>
                   <span>{answer.user.name}</span>
                   <strong>{answer.created_at}</strong>
                 </div>
-              </head>
+              </header>
             </div>
             <p>{answer.comment_answer}</p>
           </article>
+
           <aside>
             <span>
               {useId === answer.user.id && (

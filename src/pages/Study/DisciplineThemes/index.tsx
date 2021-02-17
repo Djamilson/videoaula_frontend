@@ -19,10 +19,10 @@ import ListThemes from './ListThemes';
 import Movie from './Movie';
 import {
   ContainerForm,
-  ContetMovie,
-  ContentComment,
-  Box,
   CustonHeader,
+  ContetMovie,
+  Box,
+  ContentComment,
 } from './styles';
 
 interface ParamTypes {
@@ -190,7 +190,16 @@ const DisciplineThemes: React.FC = () => {
         ...meComment,
         movie_id: selectedMovie.id,
       });
-      setComments([data, ...comments]);
+
+      const dataSerealizable = {
+        ...data,
+        created_at: dateFormatted(String(data.created_at)),
+      };
+
+      console.log('data::', data);
+      console.log('comments::', comments);
+
+      setComments([dataSerealizable, ...comments]);
     } catch (erro) {}
   }
 

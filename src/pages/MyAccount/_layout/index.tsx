@@ -11,6 +11,7 @@ import {
 import { Link } from 'react-router-dom';
 
 import Layout from '../../_layouts/auth';
+import authRoutes from '../../../routes/Routes/AuthRoutes';
 import {
   Man,
   NavButton,
@@ -35,43 +36,43 @@ const LayoutProfile: React.FC = ({ children }) => {
             <div>
               <ul>
                 <ItemLI>
-                  <Link to="/orders">
+                  <Link to={authRoutes.orders}>
                     <FaShoppingBasket />
                     <span>Pedidos</span>
                   </Link>
                 </ItemLI>
                 <ItemLI>
-                  <Link to="/profile">
+                  <Link to={authRoutes.profile}>
                     <FaUserEdit />
                     <span>Perfil</span>
                   </Link>
                 </ItemLI>
                 <ItemLI>
-                  <Link to="/avatar">
+                  <Link to={authRoutes.avatar}>
                     <FaUserCircle />
                     <span>Avatar</span>
                   </Link>
                 </ItemLI>
                 <ItemLI>
-                  <Link to="/passwords">
+                  <Link to={authRoutes.passwords}>
                     <FaUserShield />
                     <span>Senha</span>
                   </Link>
                 </ItemLI>
                 <ItemLI>
-                  <Link to="/documents">
+                  <Link to={authRoutes.documents}>
                     <FaEdit />
                     <span>Documentos</span>
                   </Link>
                 </ItemLI>
                 <ItemLI>
-                  <Link to="/addresses">
+                  <Link to={authRoutes.addresses}>
                     <FaWarehouse />
                     <span>Endereço</span>
                   </Link>
                 </ItemLI>
                 <ItemLI>
-                  <Link to="/phones">
+                  <Link to={authRoutes.phones}>
                     <FaPhoneAlt />
                     <span>Fone</span>
                   </Link>
