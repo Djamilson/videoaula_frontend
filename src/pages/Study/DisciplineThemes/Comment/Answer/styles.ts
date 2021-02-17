@@ -6,7 +6,7 @@ import { colors } from '../../../../../styles';
 export const Container = styled.li`
   margin-top: 0rem;
 
-  > fieldset {
+  fieldset {
     border: 0;
     border-top: 1px solid ${colors.colorLineInWhite};
     margin-top: 0rem;
@@ -39,34 +39,24 @@ export const Container = styled.li`
         padding: 10px;
         display: flex;
         flex-direction: column;
-        > div {
+
+        header {
+          padding: 5px 0px;
           display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: center;
+          align-items: center;
+          justify-content: space-between;
 
-          header {
-            padding: 5px 0px;
+          span {
+            font-size: 13px;
+            font-weight: normal;
+            color: ${colors.colorTextBase};
+            margin-right: 10px;
+          }
+
+          strong {
+            width: 100%;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            div {
-              display: flex;
-              flex-direction: row;
-              span {
-                font-size: 13px;
-                font-weight: bold;
-                color: ${colors.colorTextInPrimary};
-                margin-right: 10px;
-              }
-
-              strong {
-                width: 100%;
-                display: flex;
-                color: ${colors.colorTextInWhite};
-              }
-            }
+            color: ${colors.colorTextInWhite};
           }
         }
 
