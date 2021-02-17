@@ -55,7 +55,16 @@ const Profile: React.FC = () => {
 
         const res = await api.put('/profile', data);
 
-        updateUser(res.data);
+        const { name, email } = res.data.person;
+
+        updateUser({
+          ...user,
+          person: {
+            ...user.person,
+            name,
+            email,
+          },
+        });
 
         history.push(authRoutes.orders);
 
@@ -81,7 +90,7 @@ const Profile: React.FC = () => {
         removeLoading();
       }
     },
-    [addToast, addLoading, removeLoading, history, updateUser],
+    [addToast, addLoading, removeLoading, history, updateUser, user],
   );
 
   return (
