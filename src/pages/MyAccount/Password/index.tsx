@@ -13,6 +13,7 @@ import Input from '../../../components/Form/Input';
 import { useAuth } from '../../../hooks/auth';
 import { useLoading } from '../../../hooks/loading';
 import { useToast } from '../../../hooks/toast';
+import authRoutes from '../../../routes/Routes/AuthRoutes';
 import getValidationErros from '../../../utils/getValidationErros';
 import { ScheduleItem } from './styles';
 
@@ -61,7 +62,7 @@ const Password: React.FC = () => {
 
         await api.put('/profile/passwords', data);
 
-        history.push('/orders');
+        history.push(authRoutes.orders);
 
         addToast({
           type: 'success',

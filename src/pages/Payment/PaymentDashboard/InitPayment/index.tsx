@@ -30,6 +30,7 @@ import Input from '../../../../components/Form/Input';
 import { useAuth } from '../../../../hooks/auth';
 import { useLoading } from '../../../../hooks/loading';
 import { useToast } from '../../../../hooks/toast';
+import authRoutes from '../../../../routes/Routes/AuthRoutes';
 import ICourse from '../../../../types/course';
 import { formatPrice, getCardType, onlyNumbers } from '../../../../utils';
 import getValidationErros from '../../../../utils/getValidationErros';
@@ -249,7 +250,7 @@ const InitPayment: React.FC = () => {
       );
 
       //history.push('https://api.pagar.me/1/boletos/test_ckj9yiyvy1obb0gm5g9yfpgbw?format=pdf');
-      history.push('/payments/dashboard/init-payment/finally/successes');
+      history.push(authRoutes.paymentsDashboardInitPaymentFinallySuccesses);
 
       addToast({
         type: 'success',

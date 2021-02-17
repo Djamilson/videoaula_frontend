@@ -10,6 +10,7 @@ import api from '../../../_services/api';
 import { useAuth } from '../../../hooks/auth';
 import { useLoading } from '../../../hooks/loading';
 import { useToast } from '../../../hooks/toast';
+import authRoutes from '../../../routes/Routes/AuthRoutes';
 import { AvatarInput } from './styles';
 
 const Profile: React.FC = () => {
@@ -42,7 +43,7 @@ const Profile: React.FC = () => {
           };
 
           updateUser(newUser);
-          history.push('/orders');
+          history.push(authRoutes.orders);
 
           addToast({
             type: 'success',

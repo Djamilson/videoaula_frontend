@@ -66,13 +66,14 @@ export const AnimationContainer = styled.div`
     }
   }
 
-  > a {
+  > button {
     display: block;
     bottom: 80px;
-    text-decoration: none;
+    border: 0;
     transition: color 0.2s;
     font-family: 'Poppins', sans-serif;
     color: ${colors.colorTextTitle};
+    background: none;
 
     display: flex;
     align-items: center;

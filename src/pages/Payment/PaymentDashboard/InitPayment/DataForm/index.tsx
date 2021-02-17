@@ -6,13 +6,14 @@ import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
 import Layout from '../../../../_layouts/auth';
-import { Header, GroupButton, Form } from '../../../../_layouts/auth/styles';
+import { Header, Form } from '../../../../_layouts/auth/styles';
 import api from '../../../../../_services/api';
 import warningIcon from '../../../../../assets/images/icons/warning.svg';
 import Button from '../../../../../components/Button';
 import { useAuth } from '../../../../../hooks/auth';
 import { useLoading } from '../../../../../hooks/loading';
 import { useToast } from '../../../../../hooks/toast';
+import authRoutes from '../../../../../routes/Routes/AuthRoutes';
 import IPerson from '../../../../../types/person';
 import getValidationErrors from '../../../../../utils/getValidationErros';
 import {
@@ -149,6 +150,7 @@ const DataForm: React.FC = () => {
             phone,
           });
 
+          console.log('', res.data);
           updateUser({
             ...user,
             person: {
@@ -382,8 +384,9 @@ const DataForm: React.FC = () => {
           description: 'Dados cadastrado com sucesso!',
         });
 
-        history.push('/payments/dashboards');
+        history.push(authRoutes.paymentsDashboards);
       } catch (err) {
+        console.log('errr:::::', err);
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);
@@ -435,14 +438,13 @@ const DataForm: React.FC = () => {
       <Form ref={formRef} onSubmit={handleSubmit}>
         <Header>
           <h2>Complete o seu cadastro antes de prosseguir!</h2>
-          <GroupButton>
-            <Button type="submit">
-              <span>
-                <FiCheck />
-              </span>
-              <strong>Salvar</strong>
-            </Button>
-          </GroupButton>
+
+          <Button type="submit">
+            <span>
+              <FiCheck />
+            </span>
+            <strong>Salvar</strong>
+          </Button>
         </Header>
 
         {person.cpf === null && <Documents />}

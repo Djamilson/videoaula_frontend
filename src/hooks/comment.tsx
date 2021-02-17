@@ -1,7 +1,5 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
 
-import api from '../_services/api';
-import { Course } from '../pages/Dashboard/CourseItem';
 import { useToast } from './toast';
 
 interface IUser {

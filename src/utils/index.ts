@@ -6,3 +6,4 @@ export { isValidCEP } from './is-valid-cep';
 export { getCardType } from './get-card-type';
 export { dateFormatted } from './format-date';
 export { dateHourFormatted } from './format-date-hour';
+export { getWindowDimensions } from './get-window-dimensions';

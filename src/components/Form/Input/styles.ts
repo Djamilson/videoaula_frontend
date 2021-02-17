@@ -33,7 +33,7 @@ export const Container = styled.div<ContainerProps>`
   background: ${colors.colorInputBackground};
   border-radius: 7px;
   border: 1px solid ${colors.colorLineInWhite};
-  padding: 10px 15px 10px 10px;
+  padding: 8px 15px 8px 10px;
   width: 100%;
   color: #666360;
 

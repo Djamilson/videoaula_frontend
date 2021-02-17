@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import { FiArrowLeft, FiCheck, FiLock, FiMail, FiUser } from 'react-icons/fi';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -11,6 +11,7 @@ import logoImg from '../../../assets/proffy.png';
 import Input from '../../../components/Form/Input';
 import { useLoading } from '../../../hooks/loading';
 import { useToast } from '../../../hooks/toast';
+import authRoutes from '../../../routes/Routes/AuthRoutes';
 import getValidationErros from '../../../utils/getValidationErros';
 import { MyButton } from '../Login/SignIn/styles';
 import { AnimationContainer, Background, Container, Content } from './styles';
@@ -48,8 +49,8 @@ const SignUp: React.FC = () => {
           abortEarly: false,
         });
 
-        await api.post('/users', { ...data, nameGroup: 'role-students' });
-        history.push('/signin');
+        await api.post('/users', { ...data, nameGroup: 'role-student' });
+        history.push(authRoutes.signin);
 
         addToast({
           type: 'success',
@@ -76,6 +77,10 @@ const SignUp: React.FC = () => {
     [addToast, addLoading, removeLoading, history],
   );
 
+  const goBack = useCallback(() => {
+    history.goBack();
+  }, [history]);
+
   return (
     <Container>
       <Background />
@@ -100,10 +105,10 @@ const SignUp: React.FC = () => {
               <strong>Cadastra</strong>
             </MyButton>
           </Form>
-          <Link to="/">
+          <button type="button" onClick={() => goBack()}>
             <FiArrowLeft />
             Voltar
-          </Link>
+          </button>
         </AnimationContainer>
       </Content>
     </Container>

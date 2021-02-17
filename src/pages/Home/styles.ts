@@ -3,43 +3,47 @@ import { Link } from 'react-router-dom';
 import { shade } from 'polished';
 import styled from 'styled-components';
 
+import landingImg from '../../assets/images/landing.svg';
 import { colors } from '../../styles';
 
-export const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  margin-bottom: 30px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  border: 0;
+export const LandingImg = styled.div`
+  flex: 1;
+  background: url(${landingImg}) no-repeat center;
+  background-size: cover;
 `;
 
 export const Box = styled.div`
-  width: 100vw;
-  margin-left: 0;
-  margin-right: 0;
-  height: 90vh;
-  padding-top: 1rem;
-  margin-bottom: 4rem;
+  width: 100%;
+  max-width: 1440px;
+  height: 140vh;
+  margin-top: 0;
+  margin-bottom: 0rem;
+  padding: 0 3rem;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: column;
 
-  border: 0px;
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    padding: 3rem;
+    margin-top: 0rem;
+    height: 70vh;
+  }
 
   color: ${colors.colorTextInPrimary};
   background: ${colors.colorPrimary};
 
-  > img {
-    height: 18rem;
-    margin-left: 2rem;
-    @media (min-width: 1100px) {
-      height: 90%;
+  img {
+    width: 100%;
+    background-size: cover;
+    @media (min-width: 1024px) {
+      width: 33rem;
+      margin-top: 4rem;
+      margin-bottom: 2rem;
+      border: 0;
+      margin-left: -2.5rem;
     }
   }
 `;
@@ -50,21 +54,59 @@ export const ContainerLogo = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border: 0;
+  margin-top: 10rem;
 
-  > img {
-    height: 4rem;
+  width: 100%;
+
+  @media (min-width: 1024px) {
+    margin-top: 5rem;
+    padding: 0 40px;
   }
 
-  h2 {
-    font-weight: 500;
-    font-size: 1.6rem;
-    line-height: 4.6rem;
-    margin-top: 0.8rem;
+  > img {
+    margin-top: -10rem;
+    height: 5rem;
+  }
 
-    @media (min-width: 1100px) {
-      text-align: initial;
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h2 {
+      font-weight: 500;
       font-size: 1.6rem;
+      line-height: 2rem;
+
+      @media (min-width: 1024px) {
+        text-align: center;
+        font-size: 1.6rem;
+      }
+
+      @media (min-width: 768px) {
+        flex-direction: column;
+      }
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+    }
+    h2 + h2 {
+      margin-left: 6rem;
+      @media (min-width: 1024px) {
+        margin-left: 0.5rem;
+      }
+    }
+
+    h2:first-child {
+      margin-top: 2rem;
+      @media (min-width: 1024px) {
+        margin-top: 0rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      flex-direction: row;
     }
   }
 
@@ -80,29 +122,47 @@ export const ContainerLogo = styled.div`
 `;
 
 export const Footer = styled.div`
-  height: 10vh;
+  width: 100%;
+
+  max-width: 1440px;
+  height: 80vh;
   font-weight: 500;
   font-size: 1.6rem;
+  border: 0;
 
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
 
-  > section {
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    height: 50vh;
+    justify-content: center;
+
+    margin-top: 0rem;
+  }
+
+  section {
     display: flex;
     align-items: center;
     flex-direction: column;
+    align-items: center;
+    border: 0;
 
     h2 {
-      margin-right: 1.5rem;
       font-weight: 500;
       font-size: 0.9rem;
       color: ${colors.colorTextTitle};
+      margin-bottom: 0.1rem;
 
-      @media (min-width: 1100px) {
+      @media (min-width: 1024px) {
         text-align: initial;
         font-size: 1.6rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0rem;
       }
     }
     strong {
@@ -110,10 +170,18 @@ export const Footer = styled.div`
       font-size: 0.9rem;
       color: ${colors.colorTextTitle};
 
-      @media (min-width: 1100px) {
-        text-align: initial;
-        font-size: 1.2rem;
+      margin-bottom: 1rem;
+
+      @media (min-width: 1024px) {
+        text-align: center;
+        font-size: 1.6rem;
+        margin-right: 0rem;
+        margin-bottom: 0rem;
       }
+    }
+
+    @media (max-width: 768px) {
+      margin-left: 0rem;
     }
   }
 
@@ -124,10 +192,19 @@ export const Footer = styled.div`
     justify-content: flex-start;
     margin-right: 0.8rem;
     margin-left: 2.5rem;
+    margin-bottom: 2rem;
 
     font-weight: 500;
     font-size: 0.8rem;
     color: ${colors.colorTextTitle};
+
+    @media (min-width: 1024px) {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+      margin-left: 0rem;
+    }
 
     strong {
       margin-left: 1rem;
@@ -139,24 +216,12 @@ export const Footer = styled.div`
         }
       }
     }
-
-    @media (min-width: 1100px) {
-      text-align: initial;
-      font-size: 0.8rem;
-    }
   }
-`;
 
-export const ButtonsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 70vw;
-  max-width: 40vw;
-
-  margin-left: 4rem;
-  > a {
+  a {
     width: 15rem;
     height: 4rem;
+    min-height: 4rem;
     border-radius: 0.4rem;
     font: 700 1.4rem Poppins;
 
@@ -166,21 +231,10 @@ export const ButtonsContainer = styled.div`
 
     text-decoration: none;
     color: ${colors.colorButtonText};
+    margin-bottom: 2rem;
 
     transition: background-color 0.2s;
-
-    @media (min-width: 1100px) {
-      font-size: 1.4rem;
-    }
-  }
-
-  a:first-child {
-    margin-right: 1.6rem;
-  }
-
-  @media (min-width: 1100px) {
-    grid-area: buttons;
-    justify-content: flex-start;
+    margin: 1rem;
   }
 `;
 

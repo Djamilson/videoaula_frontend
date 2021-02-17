@@ -35,6 +35,8 @@
     "eslint-plugin-import-helpers"
   ],
   "rules": {
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
     "consistent-return": "off",
     "@typescript-eslint/no-empty-function": "off",
     "no-empty-function": "off",

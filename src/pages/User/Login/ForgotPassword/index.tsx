@@ -11,6 +11,7 @@ import logoCurso from '../../../../assets/images/logo.svg';
 import Input from '../../../../components/Form/Input';
 import { useLoading } from '../../../../hooks/loading';
 import { useToast } from '../../../../hooks/toast';
+import authRoutes from '../../../../routes/Routes/AuthRoutes';
 import getValidationErros from '../../../../utils/getValidationErros';
 import { MyButton } from '../SignIn/styles';
 import { Container, Content, AnimationContainer, Background } from './styles';
@@ -56,7 +57,7 @@ const ForgotPassword: React.FC = () => {
             'Enviamos um e-mail para confirmar a recuperação de senha, cheque sua caixa de entrada.',
         });
 
-        history.push('/home');
+        history.push(authRoutes.home);
       } catch (err) {
         addLoading({
           loading: false,
@@ -96,7 +97,7 @@ const ForgotPassword: React.FC = () => {
             </MyButton>
           </Form>
 
-          <Link to="/signin">
+          <Link to={authRoutes.signin}>
             <FiLogIn />
             Voltar ao login
           </Link>

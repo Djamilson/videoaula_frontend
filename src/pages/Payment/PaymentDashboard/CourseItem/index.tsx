@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import api from '../../../../_services/api';
 import { useAuth } from '../../../../hooks/auth';
 import { CourseStock } from '../../../../hooks/cartCourse';
+import authRoutes from '../../../../routes/Routes/AuthRoutes';
 import IPerson from '../../../../types/person';
 import { Container } from './styles';
 
@@ -45,7 +46,7 @@ const CourseItem: React.FC<CourseStock> = (itemCourse: CourseStock) => {
   const handleNav = useCallback(
     (course_id: string) => {
       if (person.cpf === null || phoneId === null || addressId === null) {
-        history.push('/payment/dashboard/init/payment/phone/address');
+        history.push(authRoutes.paymentDashboardInitPaymentPhoneAddress);
       } else {
         history.push(`/payments/dashboard/init-payment/${course_id}`);
       }

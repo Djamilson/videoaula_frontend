@@ -59,7 +59,15 @@ select {
   --width-menu: 974px;
 
   --space: 2rem;
+
+  --space-sm-top: 2.6rem;
   --space-sm: 1rem;
   --space-lg: 3rem;
+  --space-lgm: 1.7rem;
+  --space-lgs: 4rem;
+  --space-lm: 9rem;
+
+  --header-text-menu01: #ffffff;
+  --text-body-bg: var(--header-text-menu01);
 }
 `;

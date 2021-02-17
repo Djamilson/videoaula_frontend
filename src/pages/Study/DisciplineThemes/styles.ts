@@ -141,9 +141,6 @@ export const ContainerForm = styled.div`
     }
   }
 
-  @media (min-width: 700px) {
-  }
-
   fieldset + fieldset {
     margin-top: 3.4rem;
   }
@@ -203,6 +200,10 @@ export const ContetMovie = styled.div`
   padding: 0;
 `;
 
+export const CustonHeader = styled(Header)`
+  margin-left: -3rem;
+`;
+
 export const ContentComment = styled.ul`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -213,8 +214,4 @@ export const ContentComment = styled.ul`
   width: 100%;
   margin: 20px auto;
   padding: auto 40px;
-`;
-
-export const CustonHeader = styled(Header)`
-  margin-left: -3rem;
 `;

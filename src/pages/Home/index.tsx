@@ -6,22 +6,27 @@ import studyIcon from '../../assets/images/icons/study.svg';
 import landingImg from '../../assets/images/landing.svg';
 import logoImg from '../../assets/images/logo.svg';
 import {
-  Container,
   Box,
   ContainerLogo,
   Footer,
-  ButtonsContainer,
   LinkStudy,
   LinkGiveClasses,
+  LandingImg,
 } from './styles';
 
 const Home: React.FC = () => {
   return (
-    <Container>
+    <>
       <Box>
         <ContainerLogo>
           <img src={logoImg} alt="Proffy" />
-          <h2>Sua plataforma de estudos online.</h2>
+          <span>
+            <h2>
+              Sua plataforma de <br />
+            </h2>
+
+            <h2>estudos online.</h2>
+          </span>
         </ContainerLogo>
         <img src={landingImg} alt="heroimage" />
       </Box>
@@ -38,7 +43,7 @@ const Home: React.FC = () => {
             <img src={purpleHeartIcon} alt="Coração roxo" />
           </strong>
         </span>
-        <ButtonsContainer>
+        <>
           <LinkStudy to="/signin">
             <img src={studyIcon} alt="Estudar" />
             Estudar
@@ -47,9 +52,9 @@ const Home: React.FC = () => {
             <img src={giveClassesIcon} alt="Dar aula" />
             Cadastre-se
           </LinkGiveClasses>
-        </ButtonsContainer>
+        </>
       </Footer>
-    </Container>
+    </>
   );
 };
 

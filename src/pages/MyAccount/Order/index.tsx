@@ -65,6 +65,7 @@ const Order: React.FC = () => {
       setOrders(
         orders.map((order) => {
           if (order.id === idItem) {
+            console.log('order.course.created_at', order.course.created_at);
             return {
               ...order,
               course: {

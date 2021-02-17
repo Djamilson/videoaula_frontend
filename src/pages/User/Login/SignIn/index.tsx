@@ -11,6 +11,7 @@ import Input from '../../../../components/Form/Input';
 import { useAuth } from '../../../../hooks/auth';
 import { useLoading } from '../../../../hooks/loading';
 import { useToast } from '../../../../hooks/toast';
+import authRoutes from '../../../../routes/Routes/AuthRoutes';
 import getValidationErros from '../../../../utils/getValidationErros';
 import {
   Container,
@@ -29,7 +30,7 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
 
-  const { signIn } = useAuth();
+  const { signIn, loadMenus, updateUser } = useAuth();
   const { addToast } = useToast();
   const { addLoading, removeLoading } = useLoading();
 
@@ -53,12 +54,14 @@ const SignIn: React.FC = () => {
           description: 'Aguarde ...',
         });
 
-        await signIn({
+        const user = await signIn({
           email: data.email,
           password: data.password,
         });
 
-        history.push('/dashboard');
+        updateUser({ ...user, menus: loadMenus(user.user_groups) });
+
+        history.push(authRoutes.dashboard);
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErros(err);
@@ -75,7 +78,15 @@ const SignIn: React.FC = () => {
         removeLoading();
       }
     },
-    [signIn, addToast, removeLoading, addLoading, history],
+    [
+      signIn,
+      addToast,
+      removeLoading,
+      addLoading,
+      history,
+      updateUser,
+      loadMenus,
+    ],
   );
 
   return (
@@ -90,12 +101,13 @@ const SignIn: React.FC = () => {
       </Background>
       <Content>
         <AnimationContainer>
-          <Link to="/home">
+          <Link to={authRoutes.home}>
             <FiHome />
             Home
           </Link>
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça seu login</h1>
+
             <Input name="email" icon={FiMail} placeholder="E-mail" />
 
             <Input
@@ -110,10 +122,10 @@ const SignIn: React.FC = () => {
               </span>
               <strong>Entrar</strong>
             </MyButton>
-            <Link to="/forgot_password">Esqueci minha senha</Link>
+            <Link to={authRoutes.forgotPassword}>Esqueci minha senha</Link>
           </Form>
 
-          <Link to="/signup">
+          <Link to={authRoutes.signup}>
             <FiLogIn />
             Cadastre-se
           </Link>

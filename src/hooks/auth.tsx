@@ -1,6 +1,9 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
 
 import api from '../_services/api';
+import userMenu from '../components/Header/Menu/menu';
+import { UserRoles } from '../enum/role';
+import IMenu from '../types/menu';
 
 interface Person {
   id: string;
@@ -23,6 +26,7 @@ interface User {
   is_verified: boolean;
   user_groups: IGroup[];
   person: Person;
+  menus: IMenu[];
 }
 
 interface AuthState {
@@ -37,9 +41,10 @@ interface SignInCredentials {
 
 interface AuthContextData {
   user: User;
-  signIn(credentials: SignInCredentials): Promise<void>;
+  signIn(credentials: SignInCredentials): Promise<User>;
   signOut(): void;
   updateUser(user: User): void;
+  loadMenus(groups: IGroup[]): IMenu[];
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -61,6 +66,63 @@ const AuthProvider: React.FC = ({ children }) => {
     return {} as AuthState;
   });
 
+  const loadMenus = useCallback((groups) => {
+    const myRetorn = Array<{
+      selected: boolean;
+      label: string;
+      path: string;
+    }>();
+
+    groups.forEach((group) => {
+      if (group.id === UserRoles.roleSuperAdmin) {
+        myRetorn.push(
+          ...userMenu.menuSuperAdmins.map((menuTeacher) => {
+            return { ...menuTeacher, selected: false };
+          }),
+        );
+      }
+
+      if (group.id === UserRoles.roleAdmin) {
+        myRetorn.push(
+          ...userMenu.menuAdmins.map((menuAdmin) => {
+            return { ...menuAdmin, selected: false };
+          }),
+        );
+      }
+
+      if (group.id === UserRoles.roleStudent) {
+        myRetorn.push(
+          ...userMenu.menuStudent.map((menuStudent) => {
+            return { ...menuStudent, selected: false };
+          }),
+        );
+      }
+
+      if (group.id === UserRoles.roleUser) {
+        myRetorn.push(
+          ...userMenu.menuUsers.map((menuUser) => {
+            console.log('Estoiuo,n,n>> ', menuUser);
+            return { ...menuUser, selected: false };
+          }),
+        );
+      }
+
+      if (group.id === UserRoles.roleTeacher) {
+        myRetorn.push(
+          ...userMenu.menuTeacher.map((menuTeacher) => {
+            return { ...menuTeacher, selected: false };
+          }),
+        );
+      }
+    });
+    return myRetorn.filter(
+      (power, toThe, yellowVests) =>
+        yellowVests
+          .map((updateDemocracy) => updateDemocracy.label)
+          .indexOf(power.label) === toThe,
+    );
+  }, []);
+
   const signIn = useCallback(async ({ email, password }) => {
     const res = await api.post('sessions', { email, password });
 
@@ -72,6 +134,7 @@ const AuthProvider: React.FC = ({ children }) => {
     api.defaults.headers.authorization = `Bearer ${token}`;
 
     setData({ token, user });
+    return user;
   }, []);
 
   const signOut = useCallback(() => {
@@ -95,7 +158,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user: data.user, signIn, signOut, updateUser }}
+      value={{ user: data.user, signIn, signOut, updateUser, loadMenus }}
     >
       {children}
     </AuthContext.Provider>

@@ -17,8 +17,8 @@ export const Wrapper = styled.div`
 
 export const Content = styled.div`
   max-width: 100vw;
-  margin-top: 0rem;
-  padding: 5rem 10rem;
+  margin-top: 17rem;
+  padding: 0rem 10rem;
 `;
 
 export const Form = styled(Unform)`
@@ -34,9 +34,9 @@ export const Form = styled(Unform)`
     padding-bottom: 60px;
 
     legend {
-      font: 700 1.3rem Poppins;
+      font: 700 1rem Poppins;
       color: ${colors.colorTextTitle};
-      margin-bottom: 1.1rem;
+      margin-bottom: 0.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -79,7 +79,7 @@ export const Form = styled(Unform)`
     }
 
     fieldset + fieldset {
-      margin-top: 3.4rem;
+      margin-top: 3rem;
     }
 
     footer {

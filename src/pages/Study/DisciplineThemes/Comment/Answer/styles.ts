@@ -45,7 +45,7 @@ export const Container = styled.li`
           align-items: flex-start;
           justify-content: center;
 
-          head {
+          header {
             padding: 5px 0px;
             display: flex;
             align-items: center;
