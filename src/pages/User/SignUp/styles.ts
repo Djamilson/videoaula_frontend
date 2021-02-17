@@ -39,11 +39,15 @@ export const AnimationContainer = styled.div`
   animation: ${appearFromRight} 1s;
 
   form {
-    margin-top: 60px;
+    margin-top: 8rem;
     margin-bottom: 30px;
     width: 340px;
     text-align: center;
     font-family: 'Poppins', sans-serif;
+
+    @media (min-width: 1024px) {
+      margin-top: 60px;
+    }
 
     h1 {
       margin-bottom: 24px;
