@@ -6,10 +6,19 @@ import Button from '../../../../components/Button';
 import { colors } from '../../../../styles';
 
 export const Container = styled.div`
+  width: 100%;
   height: auto;
   display: flex;
-  align-items: stretch;
-  margin-left: -2.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0;
+
+  @media (min-width: 1024px) {
+    align-items: stretch;
+    flex-direction: row;
+    margin-left: -2.5rem;
+  }
 `;
 
 export const Content = styled.div`
@@ -19,8 +28,14 @@ export const Content = styled.div`
 
   place-content: center;
 
-  width: 100%;
   max-width: 700px;
+  margin-top: 5rem;
+  margin-bottom: 0rem;
+  width: 50%;
+
+  @media (min-width: 1024px) {
+    margin-top: 0rem;
+  }
 `;
 
 const appearFromLeft = keyframes`
@@ -42,10 +57,11 @@ export const AnimationContainer = styled.div`
 
   form {
     margin-top: 60px;
-    margin-bottom: 30px;
     width: 340px;
+    min-width: 340px;
     text-align: center;
     font-family: 'Poppins', sans-serif;
+    margin-bottom: 2rem;
 
     h1 {
       margin-bottom: 24px;
@@ -88,27 +104,35 @@ export const AnimationContainer = styled.div`
 `;
 
 export const Background = styled.div`
-  display: flex;
+  flex: 1;
   justify-content: center;
   align-items: center;
-
-  width: 60vw;
-  height: auto;
+  width: 100%;
   background: ${colors.colorPrimary};
+  height: auto;
+
+  min-width: 380px;
+  @media (min-width: 1024px) {
+    width: 60%;
+    border: 0;
+  }
 
   div {
+    border: 0;
     display: flex;
-    width: 45vw;
+    width: 100%;
     min-width: 45vw;
-    height: 90vh;
-    margin: 2rem;
-
+    height: 100vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     background: url(${signInBackgroundImg}) no-repeat center;
-    background-size: contain;
+    background-size: 65% auto;
+
+    @media (min-width: 1024px) {
+      min-width: 45vw;
+    }
 
     section {
       display: flex;
