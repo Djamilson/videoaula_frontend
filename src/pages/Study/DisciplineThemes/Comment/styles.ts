@@ -21,12 +21,12 @@ export const Container = styled.li`
       > span {
         background: none;
         flex: 1;
-        padding: 10px;
+        padding: 5px;
         align-items: center;
         img {
-          width: 40px;
-          height: 40px;
-          border-radius: 20px;
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
           margin-top: 5px;
         }
       }
@@ -38,34 +38,23 @@ export const Container = styled.li`
         display: flex;
         flex-direction: column;
 
-        > div {
+        header {
+          padding: 15px 0px;
           display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: center;
+          align-items: center;
+          justify-content: space-between;
 
-          header {
-            padding: 15px 0px;
+          span {
+            font-size: 13px;
+            font-weight: normal;
+            color: ${colors.colorTextBase};
+            margin-right: 10px;
+          }
+
+          strong {
+            width: 100%;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            div {
-              display: flex;
-              flex-direction: row;
-              span {
-                font-size: 13px;
-                font-weight: bold;
-                color: ${colors.colorTextInPrimary};
-                margin-right: 10px;
-              }
-
-              strong {
-                width: 100%;
-                display: flex;
-                color: ${colors.colorTextInWhite};
-              }
-            }
+            color: ${colors.colorTextInWhite};
           }
         }
 

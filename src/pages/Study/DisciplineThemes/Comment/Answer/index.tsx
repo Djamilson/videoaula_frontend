@@ -48,14 +48,11 @@ const CommentAnswer: React.FC<IPropsAnswer> = ({
             />
           </span>
           <article>
-            <div>
-              <header>
-                <div>
-                  <span>{answer.user.name}</span>
-                  <strong>{answer.created_at}</strong>
-                </div>
-              </header>
-            </div>
+            <header>
+              <span>{answer.user.name}</span>
+              <strong>{answer.created_at}</strong>
+            </header>
+
             <p>{answer.comment_answer}</p>
           </article>
 

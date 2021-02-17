@@ -62,14 +62,11 @@ const Comment: React.FC<Props> = ({
             />
           </span>
           <article>
-            <div>
-              <header>
-                <div>
-                  <span>{comment.user.name}</span>
-                  <strong>{comment.created_at}</strong>
-                </div>
-              </header>
-            </div>
+            <header>
+              <span>{comment.user.name}</span>
+              <strong>{comment.created_at}</strong>
+            </header>
+
             <p>{comment.comment}</p>
           </article>
           <aside>
