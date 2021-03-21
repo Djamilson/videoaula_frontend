@@ -196,9 +196,6 @@ const DisciplineThemes: React.FC = () => {
         created_at: dateFormatted(String(data.created_at)),
       };
 
-      console.log('data::', data);
-      console.log('comments::', comments);
-
       setComments([dataSerealizable, ...comments]);
     } catch (erro) {}
   }

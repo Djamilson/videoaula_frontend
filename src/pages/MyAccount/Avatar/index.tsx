@@ -66,14 +66,7 @@ const Profile: React.FC = () => {
 
   return (
     <Layout>
-      <Form
-        ref={formRef}
-        initialData={{
-          name: user.person.name,
-          email: user.person.email,
-        }}
-        onSubmit={() => {}}
-      >
+      <Form ref={formRef} onSubmit={() => {}}>
         <Header>
           <h2>Meu Avatar!</h2>
         </Header>
